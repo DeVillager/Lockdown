@@ -6,28 +6,10 @@ using System.Data;
 using Types;
 using System;
 
-public class NeedManager : MonoBehaviour
+public class NeedManager : Singleton<NeedManager>
 {
-    public static NeedManager instance = null;
     public NeedText[] needTexts;
-
-    //public TextMeshProUGUI energyText;
-    //public TextMeshProUGUI funText;
-    //public TextMeshProUGUI hygieneText;
     public TextMeshProUGUI infoText;
-
-    void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
-    }
 
     public void UpdateNeeds()
     {
@@ -39,7 +21,7 @@ public class NeedManager : MonoBehaviour
 
     public void UpdateInfo()
     {
-        GameObject collidedObject = Player.instance.GetCollidingObject();
+        GameObject collidedObject = Player.Instance.GetCollidingObject();
         infoText.text = collidedObject != null ? $"Use {collidedObject.name}?" : "Do something";
     }
 }

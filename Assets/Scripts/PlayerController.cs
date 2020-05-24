@@ -13,14 +13,11 @@ public class PlayerController : MonoBehaviour
     }
 
     [SerializeField]
-    private float moveSpeed = 5f;
-    [SerializeField]
     private LayerMask layerMask;
 
     private Vector2 movement;
     private bool useInput;
     private PlayerState state;
-    private BoxCollider2D boxCollider;
     private Rigidbody2D rb;
     public float moveTime = 0.1f;
     private float inverseMoveTime;
@@ -29,7 +26,6 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         state = PlayerState.Idle;
-        boxCollider = GetComponent<BoxCollider2D>();
         rb = GetComponent<Rigidbody2D>();
         inverseMoveTime = 1f / moveTime;
     }
@@ -79,7 +75,7 @@ public class PlayerController : MonoBehaviour
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1f, layerMask);
         collidedObject = hit.collider != null ? hit.collider.gameObject : null;
-        NeedManager.instance.UpdateInfo();
+        NeedManager.Instance.UpdateInfo();
         return collidedObject;
     }
 
@@ -106,7 +102,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Item used");
             collidedObject.GetComponent<Item>().Use();
-            NeedManager.instance.UpdateNeeds();
+            NeedManager.Instance.UpdateNeeds();
         }
     }
 

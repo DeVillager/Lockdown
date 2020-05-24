@@ -1,62 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
-using UnityEngine.SceneManagement;        //Allows us to use SceneManager
 using Types;
 using System;
 
-//Player inherits from MovingObject, our base class for objects that can move, Enemy also inherits from this.
-public class Player: MonoBehaviour
+public class Player: Singleton<Player>
 {
-    public static Player instance = null;
+    //private static Player instance = null;
     public Need[] needs;
 
     private PlayerController controller;
-    //public Need Energy
-    //{
-    //    get
-    //    {
-    //        return energy;
-    //    }
-    //    set
-    //    {
-    //        energy = value;
-    //    }
-    //}
-    //public Need Fun
-    //{
-    //    get
-    //    {
-    //        return fun;
-    //    }
-    //    set
-    //    {
-    //        fun = value;
-    //    }
-    //}
 
-    ////public int Hygiene
-    ////{
-    ////    get
-    ////    {
-    ////        return hygiene;
-    ////    }
-    ////    set
-    ////    {
-    ////        hygiene = value;
-    ////    }
-    ////}
-
-    ////public int Money
-    ////{
-    ////    get
-    ////    {
-    ////        return money;
-    ////    }
-    ////    set
-    ////    {
-    ////        money = value;
-    ////    }
-    ////}
+    //public static Player Instance { get => instance; set => instance = value; }
 
     public Need GetNeed(NeedType type)
     {
@@ -70,27 +24,26 @@ public class Player: MonoBehaviour
         return null;
     }
 
-    void Awake()
+    protected override void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-        }
-        else if (instance != this)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
+        base.Awake();
+        //if (Instance == null)
+        //{
+        //    Instance = this;
+        //}
+        //else if (Instance != this)
+        //{
+        //    Destroy(gameObject);
+        //}
+        //DontDestroyOnLoad(gameObject);
         controller = GetComponent<PlayerController>();
     }
 
-    private void Start()
-    {
-            
-    }
+
 
     public GameObject GetCollidingObject()
     {
-        return controller.collidedObject;
+        GameObject collObject = controller.collidedObject ? controller.collidedObject : null;
+        return collObject;
     }
 }
