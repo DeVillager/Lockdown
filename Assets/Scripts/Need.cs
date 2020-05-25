@@ -30,6 +30,12 @@ public class Need
 
     public void DecreasePoints(int useTime)
     {
+        //DecreasePointsByDepletionRate(useTime);
+        Points--;
+    }
+
+    public void DecreasePointsByDepletionRate(int useTime)
+    {
         int depletePoints = (int)(useTime / DepletionHours);
         int leftAmount = useTime % DepletionHours;
         DepletionTime -= leftAmount;

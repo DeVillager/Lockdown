@@ -14,7 +14,8 @@ public class TimeManager : Singleton<TimeManager>
     private void Update()
     {
         string amOrPm = GameManager.Instance.Time < 12 ? "AM" : "PM";
-        timeText.text = $"{GameManager.Instance.Time % 12}.00 {amOrPm}";
-        daysToDeadLineText.text = $"Days until deadline: {GameManager.Instance.DaysToDeadLine}";
+        //timeText.text = $"{GameManager.Instance.Time % 12}.00 {amOrPm}";
+        timeText.text = $"Day remaining {24 - (GameManager.Instance.Time)}h";
+        daysToDeadLineText.text = $"Days to deadline: {GameManager.Instance.DaysToDeadLine}";
     }
 }

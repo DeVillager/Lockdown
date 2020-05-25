@@ -14,7 +14,7 @@ public class Item : MonoBehaviour
     public int UseTime { get => useTime; set => useTime = value; }
     public Need[] RestoredNeeds { get => restoredNeeds; set => restoredNeeds = value; }
 
-    public void Use()
+    public virtual void Use()
     {
         foreach (Need playerNeed in Player.Instance.needs)
         {
@@ -23,7 +23,10 @@ public class Item : MonoBehaviour
             {
                 playerNeed.Points += restoredNeed.Points;
             }
-            playerNeed.DecreasePoints(useTime);
+            else
+            {
+                playerNeed.DecreasePoints(useTime);
+            }
         }
         GameManager.Instance.Time += UseTime;
     }

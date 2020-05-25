@@ -2,33 +2,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Types;
 
 public class PlayerController : MonoBehaviour
 {
-    public enum PlayerState
-    {
-        Idle,
-        Move,
-        Act,
-    }
-
     [SerializeField]
     private LayerMask layerMask;
+    [SerializeField]
+    private float moveTime = 0.1f;
+    private float inverseMoveTime;
 
     private Vector2 movement;
     private bool useInput;
+
     private PlayerState state;
     private Rigidbody2D rb;
-    public float moveTime = 0.1f;
-    private float inverseMoveTime;
+
+    [HideInInspector]
     public GameObject collidedObject;
+    [HideInInspector]
     public bool collidingToItem = false;
+
+    private Animator animator;
 
     private void Awake()
     {
         state = PlayerState.Idle;
         rb = GetComponent<Rigidbody2D>();
         inverseMoveTime = 1f / moveTime;
+        animator = GetComponent<Animator>();
     }
 
     void Update()
@@ -50,6 +52,12 @@ public class PlayerController : MonoBehaviour
         {
             movement.y = 0;
         }
+        //if (state == PlayerState.Idle)
+        //{
+        animator.SetFloat("Horizontal", movement.x);
+        animator.SetFloat("Vertical", movement.y);
+        //}
+        animator.SetFloat("Speed", movement.sqrMagnitude);
         useInput = Input.GetButtonDown("Fire1");
     }
 
@@ -59,6 +67,8 @@ public class PlayerController : MonoBehaviour
         Vector2 direction = new Vector2(movement.x, movement.y);
         if (state == PlayerState.Idle && (movement.x != 0 || movement.y != 0))
         {
+            animator.SetFloat("LastHorizontal", movement.x);
+            animator.SetFloat("LastVertical", movement.y);
             if (MoveEnabled(direction))
             {
                 StartCoroutine(SmoothMovement(start, direction));

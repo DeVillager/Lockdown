@@ -8,6 +8,13 @@
         Hygiene,
         Mentality
     }
+
+    public enum PlayerState
+    {
+        Idle,
+        Move,
+        Act,
+    }
 }
 
 
