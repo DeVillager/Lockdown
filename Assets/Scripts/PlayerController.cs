@@ -22,6 +22,7 @@ public class PlayerController : MonoBehaviour
     public float moveTime = 0.1f;
     private float inverseMoveTime;
     public GameObject collidedObject;
+    public bool collidingToItem = false;
 
     private void Awake()
     {
@@ -73,7 +74,22 @@ public class PlayerController : MonoBehaviour
     private GameObject GetGameobjectInDirection(Vector2 direction)
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, direction, 1f, layerMask);
-        collidedObject = hit.collider != null ? hit.collider.gameObject : null;
+        if (hit.collider != null)
+        {
+            collidedObject = hit.collider.gameObject;
+            if (collidedObject.layer == LayerMask.NameToLayer("Item"))
+            {
+                collidingToItem = true;
+            }
+            else
+            {
+                collidingToItem = false;
+            }
+        }
+        else
+        {
+            collidedObject = null;
+        }
         NeedManager.Instance.UpdateInfo();
         return collidedObject;
     }
@@ -96,7 +112,7 @@ public class PlayerController : MonoBehaviour
 
     private void Actions()
     {
-        if (useInput && collidedObject != null)
+        if (useInput && collidedObject != null && collidingToItem)
         {
             Debug.Log("Item used");
             collidedObject.GetComponent<Item>().Use();

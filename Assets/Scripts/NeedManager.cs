@@ -22,6 +22,13 @@ public class NeedManager : Singleton<NeedManager>
     public void UpdateInfo()
     {
         GameObject collidedObject = Player.Instance.GetCollidingObject();
-        infoText.text = collidedObject != null ? $"Use {collidedObject.name}?" : "Do something";
+        if (collidedObject != null && Player.Instance.IsCollidingToItem())
+        {
+            infoText.text = $"Use {collidedObject.name}?";
+        }
+        else
+        {
+            infoText.text = "";
+        }
     }
 }

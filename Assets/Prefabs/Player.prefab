@@ -146,9 +146,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   layerMask:
     serializedVersion: 2
-    m_Bits: 256
-  moveTime: 0.05
+    m_Bits: 768
+  moveTime: 0.1
   collidedObject: {fileID: 0}
+  collidingToItem: 0
 --- !u!114 &4355835935556268049
 MonoBehaviour:
   m_ObjectHideFlags: 0

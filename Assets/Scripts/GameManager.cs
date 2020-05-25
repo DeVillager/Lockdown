@@ -21,7 +21,7 @@ public class GameManager : Singleton<GameManager>
             time = value;
             if (time > 24)
             {
-                daysToDeadLine--;
+                DaysToDeadLine--;
                 time %= 24;
             }
         }

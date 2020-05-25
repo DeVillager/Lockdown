@@ -39,4 +39,9 @@ public class Item : MonoBehaviour
         }
         return null;
     }
+
+    public Sprite GetSprite()
+    {
+        return transform.GetComponentInChildren<SpriteRenderer>().sprite;
+    }
 }

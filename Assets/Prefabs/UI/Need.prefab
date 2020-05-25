@@ -66,7 +66,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: Energy 10
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: df4d51c4b86984f4688bd832cdb355e2, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: d85917d418a7aa64baa593f080520ea4, type: 2}
   m_sharedMaterial: {fileID: -2946772409708956741, guid: df4d51c4b86984f4688bd832cdb355e2,
     type: 2}
   m_fontSharedMaterials: []
@@ -93,8 +93,8 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 18
+  m_fontSizeBase: 18
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -145,7 +145,7 @@ MonoBehaviour:
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_spriteAnimator: {fileID: 0}
-  m_hasFontAssetChanged: 0
+  m_hasFontAssetChanged: 1
   m_subTextObjects:
   - {fileID: 0}
   - {fileID: 0}
