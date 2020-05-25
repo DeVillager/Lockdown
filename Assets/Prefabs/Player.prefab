@@ -144,11 +144,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7f00bccb4507ab54088b942e5e7693ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 5
   layerMask:
     serializedVersion: 2
     m_Bits: 256
-  moveTime: 0.1
+  moveTime: 0.05
   collidedObject: {fileID: 0}
 --- !u!114 &4355835935556268049
 MonoBehaviour:
@@ -165,7 +164,17 @@ MonoBehaviour:
   needs:
   - type: 0
     points: 10
+    depletionHours: 2
   - type: 1
     points: 10
+    depletionHours: 2
   - type: 2
     points: 10
+    depletionHours: 2
+  - type: 3
+    points: 10
+    depletionHours: 2
+  - type: 4
+    points: 10
+    depletionHours: 2
+  controller: {fileID: 0}

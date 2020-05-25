@@ -34,7 +34,6 @@ public class PlayerController : MonoBehaviour
     {
         GetInputs();
         Actions();
-        
     }
 
     private void FixedUpdate()
@@ -93,7 +92,6 @@ public class PlayerController : MonoBehaviour
         }
         state = PlayerState.Idle;
         GetGameobjectInDirection(direction);
-        
     }
 
     private void Actions()
