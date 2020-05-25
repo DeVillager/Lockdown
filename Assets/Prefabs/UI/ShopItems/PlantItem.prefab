@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5032905404595535043, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}
       propertyPath: m_Name
-      value: Plant
+      value: PlantItem
       objectReference: {fileID: 0}
     - target: {fileID: 5229255913332961697, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}
@@ -117,6 +117,16 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 6254781098024849017, guid: 385e7a175ba117c4bb9ead7aa3681134,
+        type: 3}
+      propertyPath: m_text
+      value: Name
+      objectReference: {fileID: 0}
+    - target: {fileID: 6254781098024849017, guid: 385e7a175ba117c4bb9ead7aa3681134,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6803928447577136841, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}
       propertyPath: itemName
@@ -126,6 +136,21 @@ PrefabInstance:
         type: 3}
       propertyPath: price
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6803928447577136841, guid: 385e7a175ba117c4bb9ead7aa3681134,
+        type: 3}
+      propertyPath: location.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104428202260621239, guid: 385e7a175ba117c4bb9ead7aa3681134,
+        type: 3}
+      propertyPath: m_text
+      value: 1G
+      objectReference: {fileID: 0}
+    - target: {fileID: 8104428202260621239, guid: 385e7a175ba117c4bb9ead7aa3681134,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 385e7a175ba117c4bb9ead7aa3681134, type: 3}

@@ -28,6 +28,7 @@ public class Item : MonoBehaviour
                 playerNeed.DecreasePoints(useTime);
             }
         }
+        NeedManager.Instance.UpdateNeeds();
         GameManager.Instance.Time += UseTime;
     }
 

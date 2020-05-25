@@ -126,7 +126,7 @@ public class PlayerController : MonoBehaviour
         {
             Debug.Log("Item used");
             collidedObject.GetComponent<Item>().Use();
-            NeedManager.Instance.UpdateNeeds();
+            //NeedManager.Instance.UpdateNeeds();
         }
     }
 

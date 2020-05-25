@@ -10,7 +10,7 @@ PrefabInstance:
     - target: {fileID: 5032905404595535043, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}
       propertyPath: m_Name
-      value: Shelf
+      value: ShelfItem
       objectReference: {fileID: 0}
     - target: {fileID: 5229255913332961697, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}
@@ -141,12 +141,12 @@ PrefabInstance:
         type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 4592909625861315493, guid: 827d0aa61637cdb49876c33d8baa227b,
+      objectReference: {fileID: 5242695170707045769, guid: 6e271f2dd92a01b46a6680ccc799a5cc,
         type: 3}
     - target: {fileID: 6803928447577136841, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}
       propertyPath: location.x
-      value: -3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6803928447577136841, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}

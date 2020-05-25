@@ -30,20 +30,23 @@ public class Need
 
     public void DecreasePoints(int useTime)
     {
-        //DecreasePointsByDepletionRate(useTime);
         Points--;
+        if (Points <= 0)
+        {
+            NeedManager.Instance.SufferFromNeed(this);
+        }
     }
 
-    public void DecreasePointsByDepletionRate(int useTime)
-    {
-        int depletePoints = (int)(useTime / DepletionHours);
-        int leftAmount = useTime % DepletionHours;
-        DepletionTime -= leftAmount;
-        if (DepletionTime <= 0)
-        {
-            DepletionTime += DepletionHours;
-            depletePoints++;
-        }
-        Points -= depletePoints;
-    }
+    //public void DecreasePointsByDepletionRate(int useTime)
+    //{
+    //    int depletePoints = (int)(useTime / DepletionHours);
+    //    int leftAmount = useTime % DepletionHours;
+    //    DepletionTime -= leftAmount;
+    //    if (DepletionTime <= 0)
+    //    {
+    //        DepletionTime += DepletionHours;
+    //        depletePoints++;
+    //    }
+    //    Points -= depletePoints;
+    //}
 }

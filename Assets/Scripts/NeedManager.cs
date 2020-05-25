@@ -10,6 +10,12 @@ public class NeedManager : Singleton<NeedManager>
 {
     public NeedText[] needTexts;
     public TextMeshProUGUI infoText;
+    private GameManager gameManager;
+
+    private void Start()
+    {
+        gameManager = GameManager.Instance;
+    }
 
     public void UpdateNeeds()
     {
@@ -29,6 +35,30 @@ public class NeedManager : Singleton<NeedManager>
         else
         {
             infoText.text = "";
+        }
+    }
+
+    public void SufferFromNeed(Need playerNeed)
+    {
+        NeedType needType = playerNeed.Type;
+        switch (needType)
+        {
+            case NeedType.Energy:
+                playerNeed.Points = 10;
+                gameManager.Time = 8;
+                gameManager.DaysToDeadLine--;
+                gameManager.LoadNextDay();
+                break;
+            case NeedType.Hunger:
+                break;
+            case NeedType.Fun:
+                break;
+            case NeedType.Hygiene:
+                break;
+            case NeedType.Mentality:
+                break;
+            default:
+                break;
         }
     }
 }

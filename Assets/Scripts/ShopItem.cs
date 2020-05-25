@@ -27,8 +27,6 @@ public class ShopItem : MonoBehaviour
     {
         nameText.text = itemName;
         priceText.text = price + "G";
-        //siblingIndex = transform.GetSiblingIndex();
-        //AssignNextItem();
     }
 
     private void AssignNextItem()
@@ -36,21 +34,31 @@ public class ShopItem : MonoBehaviour
         int siblingIndex = transform.GetSiblingIndex();
         if (siblingIndex != 0)
         {
-            nextShopItem = transform.GetChild(0).gameObject;
-        } else
-        {
-            nextShopItem = transform.GetChild(1).gameObject;
+            nextShopItem = transform.parent.GetChild(0).gameObject;
         }
-        //nextShopItem = transform.GetChild(siblingIndex + 1).gameObject;
+        else
+        {
+            if (transform.parent.childCount == 1)
+            {
+                nextShopItem = transform.parent.parent.GetChild(2).gameObject;
+            }
+            else
+            {
+                nextShopItem = transform.parent.GetChild(1).gameObject;
+            }
+        }
         EventSystem.current.SetSelectedGameObject(nextShopItem);
     }
 
     public void Buy()
     {
-        GameObject newItem = Instantiate(item, location, Quaternion.identity);
-        newItem.name = itemName;
-        AssignNextItem();
-        Destroy(gameObject);
-        //gameObject.SetActive(false);
+        if (Player.Instance.money >= price)
+        {
+            GameObject newItem = Instantiate(item, location, Quaternion.identity);
+            newItem.name = itemName;
+            Player.Instance.money -= price;
+            AssignNextItem();
+            Destroy(gameObject);
+        }
     }
 }

@@ -5,6 +5,7 @@ using System;
 
 public class Player : Singleton<Player>
 {
+    public int money;
     public Need[] needs;
     public PlayerController controller;
 

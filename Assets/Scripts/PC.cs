@@ -12,22 +12,28 @@ public class PC : Item
 
     public override void Use()
     {
-        base.Use();
+        //base.Use();
         OpenPC();
+    }
+
+    public void Work()
+    {
+        Player.Instance.money += GameManager.Instance.hourlyWage;
+        base.Use();
     }
 
     public void OpenPC()
     {
         homeWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(firstButton);
-        Time.timeScale = 0f;
+        Player.Instance.controller.enabled = false;
     }
 
     public void ClosePC()
     {
         homeWindow.SetActive(false);
-        Time.timeScale = 1f;
         EventSystem.current.SetSelectedGameObject(null);
+        Player.Instance.controller.enabled = true;
     }
 
     public void OpenShop()
