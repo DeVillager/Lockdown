@@ -8,7 +8,7 @@ using System;
 
 public class NeedManager : Singleton<NeedManager>
 {
-    public NeedText[] needTexts;
+    public InfoText[] needTexts;
     public TextMeshProUGUI infoText;
     private GameManager gameManager;
 
@@ -19,9 +19,9 @@ public class NeedManager : Singleton<NeedManager>
 
     public void UpdateNeeds()
     {
-        foreach (NeedText needText in needTexts)
+        foreach (InfoText needText in needTexts)
         {
-            needText.SetText();
+            needText.SetNeedText();
         }
     }
 

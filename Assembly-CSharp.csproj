@@ -65,11 +65,11 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\InfoManager.cs" />
+    <Compile Include="Assets\Scripts\InfoText.cs" />
     <Compile Include="Assets\Scripts\Item.cs" />
     <Compile Include="Assets\Scripts\ItemRestores.cs" />
     <Compile Include="Assets\Scripts\Need.cs" />
     <Compile Include="Assets\Scripts\NeedManager.cs" />
-    <Compile Include="Assets\Scripts\NeedText.cs" />
     <Compile Include="Assets\Scripts\PC.cs" />
     <Compile Include="Assets\Scripts\PCMenu.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />

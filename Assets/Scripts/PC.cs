@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using Types;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -9,16 +10,25 @@ public class PC : Item
     public GameObject homeWindow;
     public GameObject shopWindow;
     public GameObject firstButton;
+    public int mentality;
 
     public override void Use()
     {
-        //base.Use();
         OpenPC();
     }
 
     public void Work()
     {
-        Player.Instance.money += GameManager.Instance.hourlyWage;
+        int wage = GameManager.Instance.hourlyWage;
+        UIManager.Instance.SetText($"You worked hard and earned {wage}G.");
+        Player.Instance.money += wage;
+        base.Use();
+    }   
+    
+    public void Chat()
+    {
+        UIManager.Instance.SetText($"You called a friend.\nMentality (+{mentality})");
+        Player.Instance.IncreaseNeed(NeedType.Mentality, mentality);
         base.Use();
     }
 

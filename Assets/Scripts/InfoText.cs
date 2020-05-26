@@ -6,7 +6,7 @@ using Types;
 using UnityEngine;
 
 [System.Serializable]
-public class NeedText : MonoBehaviour
+public class InfoText : MonoBehaviour
 {
     [SerializeField]
     private NeedType needType = NeedType.Energy;
@@ -17,10 +17,15 @@ public class NeedText : MonoBehaviour
         TMPtext = GetComponent<TextMeshProUGUI>();
     }
 
-    public void SetText()
+    public void SetNeedText()
     {
         int points = Player.Instance.GetNeed(needType).Points;
         string text = $"{needType} {points}";
+        TMPtext.text = text;
+    }
+
+    public void SetText(string text)
+    {
         TMPtext.text = text;
     }
 }

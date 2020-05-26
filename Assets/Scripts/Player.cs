@@ -47,4 +47,10 @@ public class Player : Singleton<Player>
     {
         return controller.collidingToItem;
     }
+
+    public void IncreaseNeed(NeedType needType, int amount)
+    {
+        Need need = GetNeed(needType);
+        need.Points += amount;
+    }
 }

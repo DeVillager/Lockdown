@@ -58,7 +58,12 @@ public class ShopItem : MonoBehaviour
             newItem.name = itemName;
             Player.Instance.money -= price;
             AssignNextItem();
+            UIManager.Instance.SetText($"You bought {itemName}!");
             Destroy(gameObject);
+        }
+        else
+        {
+            UIManager.Instance.SetText("Not enough money.");
         }
     }
 }

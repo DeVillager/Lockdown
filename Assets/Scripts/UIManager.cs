@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,6 +16,9 @@ public class UIManager : Singleton<UIManager>
     private GameObject daysRemainingScreen;
     [SerializeField]
     private TextMeshProUGUI daysRemainingText;
+    [SerializeField]
+    private TextMeshProUGUI infoText;
+
 
     //TODO Remove update and change by call
     private void Update()
@@ -26,5 +30,10 @@ public class UIManager : Singleton<UIManager>
         moneyText.text = $"Money\n{Player.Instance.money}G";
 
         daysRemainingText.text = $"Days to deadline\n{GameManager.Instance.DaysToDeadLine}";
+    }
+
+    public void SetText(string text)
+    {
+        infoText.text = text;
     }
 }
