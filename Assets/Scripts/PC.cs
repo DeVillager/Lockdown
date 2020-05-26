@@ -11,6 +11,8 @@ public class PC : Item
     public GameObject shopWindow;
     public GameObject firstButton;
     public int mentality;
+    public GameObject foodOrder;
+    public Vector2 foodOrderPosition;
 
     public override void Use()
     {
@@ -29,6 +31,13 @@ public class PC : Item
     {
         UIManager.Instance.SetText($"You called a friend.\nMentality (+{mentality})");
         Player.Instance.IncreaseNeed(NeedType.Mentality, mentality);
+        base.Use();
+    }
+
+    //TODO OrderFood
+    public void OrderFood()
+    {
+        Instantiate(foodOrder, foodOrderPosition, Quaternion.identity);
         base.Use();
     }
 
@@ -59,4 +68,5 @@ public class PC : Item
         homeWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
     }
+
 }

@@ -142,6 +142,11 @@ PrefabInstance:
       propertyPath: location.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 6803928447577136841, guid: 385e7a175ba117c4bb9ead7aa3681134,
+        type: 3}
+      propertyPath: location.x
+      value: -3
+      objectReference: {fileID: 0}
     - target: {fileID: 8104428202260621239, guid: 385e7a175ba117c4bb9ead7aa3681134,
         type: 3}
       propertyPath: m_text

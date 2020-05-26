@@ -78,6 +78,8 @@
     <Compile Include="Assets\Scripts\ShopItem.cs" />
     <Compile Include="Assets\Scripts\ShopManager.cs" />
     <Compile Include="Assets\Scripts\Singleton.cs" />
+    <Compile Include="Assets\Scripts\Task.cs" />
+    <Compile Include="Assets\Scripts\TaskManager.cs" />
     <Compile Include="Assets\Scripts\Types.cs" />
     <Compile Include="Assets\Scripts\UIManager.cs" />
     <Compile Include="Assets\Scripts\Wall.cs" />

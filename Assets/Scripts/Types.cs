@@ -15,6 +15,18 @@
         Move,
         Act,
     }
+
+    public enum TaskType
+    {
+        Value,
+        Action,
+    }
+
+    public enum ValueType
+    {
+        Money,
+        Work,
+    }
 }
 
 
