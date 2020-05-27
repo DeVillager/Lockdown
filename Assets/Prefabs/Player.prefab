@@ -148,6 +148,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 768
   moveTime: 0.1
+  startPosition: {x: 0, y: 0}
   collidedObject: {fileID: 0}
   collidingToItem: 0
 --- !u!114 &4355835935556268049
@@ -162,20 +163,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c41bfed67d0b04ba06f082f052a51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 10
+  exp: 0
   needs:
   - type: 0
     points: 10
-    depletionHours: 2
+    depletionHours: 1
   - type: 1
     points: 10
-    depletionHours: 2
+    depletionHours: 1
   - type: 2
     points: 10
-    depletionHours: 2
+    depletionHours: 1
   - type: 3
     points: 10
-    depletionHours: 2
+    depletionHours: 1
   - type: 4
     points: 10
-    depletionHours: 2
+    depletionHours: 1
   controller: {fileID: 0}

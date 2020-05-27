@@ -22,6 +22,11 @@ PrefabInstance:
       propertyPath: restoredNeeds.Array.data[0].points
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 1758333964027075876, guid: 4945440ff6533b44985bd1ce3902cf59,
+        type: 3}
+      propertyPath: useMessage
+      value: What should I read?
+      objectReference: {fileID: 0}
     - target: {fileID: 1758333964027075896, guid: 4945440ff6533b44985bd1ce3902cf59,
         type: 3}
       propertyPath: m_Name

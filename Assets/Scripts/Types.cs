@@ -1,4 +1,6 @@
-﻿namespace Types
+﻿using System;
+
+namespace Types
 {
     public enum NeedType
     {
@@ -26,6 +28,20 @@
     {
         Money,
         Work,
+    }
+
+    [Serializable]
+    public struct ValueAmount
+    {
+        public ValueType valueType;
+        public int amount;
+    }
+
+    public enum GameState
+    {
+        Game,
+        GameOver,
+        Victory
     }
 }
 

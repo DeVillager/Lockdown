@@ -3,26 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 using Types;
 using TMPro;
+using System;
+using ValueType = Types.ValueType;
 
+[Serializable]
 public class Task : MonoBehaviour
 {
-    public string name;
+    public string taskName;
     public string description;
     public TaskType taskType;
     public NeedType needType;
-    public int money;
     public int requiredAmount;
     public int expPoints;
-    private TextMeshProUGUI descriptionText;
+    [HideInInspector]
+    public TextMeshProUGUI descriptionText;
     public ValueType valueType;
-
-    public Task(string name, TaskType taskType, int reqiredAmount)
-    {
-    }
+    [HideInInspector]
+    public bool completed = false;
 
     private void Awake()
     {
         descriptionText = GetComponentInChildren<TextMeshProUGUI>();
         descriptionText.text = description;
     }
+
+    
+
 }

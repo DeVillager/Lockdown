@@ -11,9 +11,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField]
     private float moveTime = 0.1f;
     private float inverseMoveTime;
+    [SerializeField]
+    private Vector2 startPosition = Vector2.zero;
 
     private Vector2 movement;
     private bool useInput;
+    
 
     private PlayerState state;
     private Rigidbody2D rb;
@@ -31,6 +34,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         inverseMoveTime = 1f / moveTime;
         animator = GetComponent<Animator>();
+        SetStartPosition();
     }
 
     void Update()
@@ -59,6 +63,18 @@ public class PlayerController : MonoBehaviour
         //}
         animator.SetFloat("Speed", movement.sqrMagnitude);
         useInput = Input.GetButtonDown("Fire1");
+    }
+
+    public void Reset()
+    {
+        SetStartPosition();
+        collidedObject = null;
+        collidingToItem = false;
+    }
+
+    public void SetStartPosition()
+    {
+        rb.position = startPosition;
     }
 
     private void Move()

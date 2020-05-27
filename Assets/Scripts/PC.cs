@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Types;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using ValueType = Types.ValueType;
 
 public class PC : Item
 {
@@ -21,28 +22,31 @@ public class PC : Item
 
     public void Work()
     {
+        base.Use();
         int wage = GameManager.Instance.hourlyWage;
         UIManager.Instance.SetText($"You worked hard and earned {wage}G.");
-        Player.Instance.money += wage;
-        base.Use();
+        Player.Instance.IncreaseMoney(wage);
+        TaskManager.Instance.IncreaseDailyPoints(ValueType.Work, UseTime);
     }   
     
     public void Chat()
     {
+        base.Use();
         UIManager.Instance.SetText($"You called a friend.\nMentality (+{mentality})");
         Player.Instance.IncreaseNeed(NeedType.Mentality, mentality);
-        base.Use();
     }
 
     //TODO OrderFood
     public void OrderFood()
     {
-        Instantiate(foodOrder, foodOrderPosition, Quaternion.identity);
         base.Use();
+        UIManager.Instance.SetText($"Ordered some food.\nIt should arrive shortly.");
+        Instantiate(foodOrder, foodOrderPosition, Quaternion.identity);
     }
 
     public void OpenPC()
     {
+        UIManager.Instance.SetText($"I turned on PC.");
         homeWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(firstButton);
         Player.Instance.controller.enabled = false;
@@ -50,6 +54,7 @@ public class PC : Item
 
     public void ClosePC()
     {
+        UIManager.Instance.SetText($"Shutting down PC...");
         homeWindow.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
         Player.Instance.controller.enabled = true;
@@ -57,6 +62,7 @@ public class PC : Item
 
     public void OpenShop()
     {
+        UIManager.Instance.SetText($"Browsing the online shop.");
         homeWindow.SetActive(false);
         shopWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
@@ -64,6 +70,7 @@ public class PC : Item
 
     public void CloseShop()
     {
+        UIManager.Instance.SetText($"Returning to home screen.");
         shopWindow.SetActive(false);
         homeWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);

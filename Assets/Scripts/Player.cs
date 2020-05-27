@@ -2,12 +2,14 @@
 using System.Collections;
 using Types;
 using System;
+using ValueType = Types.ValueType;
 
 public class Player : Singleton<Player>
 {
     public int money;
     public int exp = 0;
     public Need[] needs;
+    [HideInInspector]
     public PlayerController controller;
 
     public Need GetNeed(NeedType type)
@@ -34,6 +36,12 @@ public class Player : Singleton<Player>
         return collObject;
     }
 
+    public void IncreaseMoney(int amount)
+    {
+        TaskManager.Instance.IncreaseDailyPoints(ValueType.Money, amount);
+        money += amount;
+    }
+
     public Item GetCollidingItem()
     {
         GameObject collObject = controller.collidedObject ? controller.collidedObject : null;
@@ -42,6 +50,11 @@ public class Player : Singleton<Player>
             return controller.collidedObject.GetComponent<Item>();
         }
         return null;
+    }
+
+    public void NextDay()
+    {
+        controller.Reset();
     }
 
     public bool IsCollidingToItem()

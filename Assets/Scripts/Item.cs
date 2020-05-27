@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Types;
 using UnityEngine;
+using ValueType = Types.ValueType;
 
 public class Item : MonoBehaviour
 {
@@ -10,24 +11,32 @@ public class Item : MonoBehaviour
     private Need[] restoredNeeds;
     [SerializeField]
     private int useTime = 1;
+    [SerializeField]
+    private string useMessage;
 
     public int UseTime { get => useTime; set => useTime = value; }
     public Need[] RestoredNeeds { get => restoredNeeds; set => restoredNeeds = value; }
+    public string UseMessage { get => useMessage; set => useMessage = value; }
+    
 
     public virtual void Use()
     {
+        string restoredMsg = "";
         foreach (Need playerNeed in Player.Instance.needs)
         {
             Need restoredNeed = GetNeed(playerNeed.Type);
             if (restoredNeed != null)
             {
-                playerNeed.Points += restoredNeed.Points;
+                restoredMsg += $"({restoredNeed.Type} +{restoredNeed.Points}) ";
+                Player.Instance.IncreaseNeed(restoredNeed.Type, restoredNeed.Points);
+                
             }
             else
             {
                 playerNeed.DecreasePoints(useTime);
             }
         }
+        UIManager.Instance.SetText($"{UseMessage} {restoredMsg}");
         NeedManager.Instance.UpdateNeeds();
         GameManager.Instance.Time += UseTime;
     }

@@ -12,6 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 032f6e925b2077f4494c3e6a930b25a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  restoredNeeds: []
+  useTime: 1
+  useMessage: 
+  homeWindow: {fileID: 0}
+  shopWindow: {fileID: 0}
+  firstButton: {fileID: 0}
+  mentality: 0
+  foodOrder: {fileID: 0}
+  foodOrderPosition: {x: 0, y: 0}
 --- !u!1001 &2655604427355618012
 PrefabInstance:
   m_ObjectHideFlags: 0
