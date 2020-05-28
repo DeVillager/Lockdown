@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private Vector2 movement;
     private bool useInput;
+    private bool resetInput;
     
 
     private PlayerState state;
@@ -63,6 +64,7 @@ public class PlayerController : MonoBehaviour
         //}
         animator.SetFloat("Speed", movement.sqrMagnitude);
         useInput = Input.GetButtonDown("Fire1");
+        resetInput = Input.GetButtonDown("Start");
     }
 
     public void Reset()
@@ -143,6 +145,10 @@ public class PlayerController : MonoBehaviour
             Debug.Log("Item used");
             collidedObject.GetComponent<Item>().Use();
             //NeedManager.Instance.UpdateNeeds();
+        }
+        if (resetInput)
+        {
+            GameManager.Instance.ResetGame();
         }
     }
 

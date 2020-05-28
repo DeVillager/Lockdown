@@ -20,7 +20,7 @@ PrefabInstance:
     - target: {fileID: 7995470196807174576, guid: 31af6346b850cfe4f9eefba5572021b3,
         type: 3}
       propertyPath: m_text
-      value: Hunger 10
+      value: Hunger
       objectReference: {fileID: 0}
     - target: {fileID: 7995470196807174576, guid: 31af6346b850cfe4f9eefba5572021b3,
         type: 3}

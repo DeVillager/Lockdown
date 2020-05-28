@@ -52,11 +52,11 @@ public class ShopItem : MonoBehaviour
 
     public void Buy()
     {
-        if (Player.Instance.money >= price)
+        if (Player.Instance.Money >= price)
         {
             GameObject newItem = Instantiate(item, location, Quaternion.identity);
             newItem.name = itemName;
-            Player.Instance.money -= price;
+            Player.Instance.Money -= price;
             AssignNextItem();
             UIManager.Instance.SetText($"You bought {itemName}!");
             Destroy(gameObject);

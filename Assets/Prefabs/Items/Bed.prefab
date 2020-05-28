@@ -15,7 +15,7 @@ PrefabInstance:
     - target: {fileID: 1758333964027075876, guid: 4945440ff6533b44985bd1ce3902cf59,
         type: 3}
       propertyPath: restoredNeeds.Array.data[0].points
-      value: 8
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1758333964027075876, guid: 4945440ff6533b44985bd1ce3902cf59,
         type: 3}
@@ -26,6 +26,16 @@ PrefabInstance:
         type: 3}
       propertyPath: useMessage
       value: You slept well and feel energized.
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758333964027075876, guid: 4945440ff6533b44985bd1ce3902cf59,
+        type: 3}
+      propertyPath: restoredNeeds.Array.data[0].maxPoints
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1758333964027075876, guid: 4945440ff6533b44985bd1ce3902cf59,
+        type: 3}
+      propertyPath: restoredNeeds.Array.data[0].decreaseProbability
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1758333964027075896, guid: 4945440ff6533b44985bd1ce3902cf59,
         type: 3}

@@ -20,7 +20,7 @@ public class InfoText : MonoBehaviour
     public void SetNeedText()
     {
         int points = Player.Instance.GetNeed(needType).Points;
-        string text = $"{needType} {points}";
+        string text = $"{needType}";
         TMPtext.text = text;
     }
 

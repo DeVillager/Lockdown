@@ -1,33 +1,5 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-3012969680601372959
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7995470196807174578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0e419d247f84bd8459f49922f66182fd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  needType: 0
---- !u!114 &-2298032170490461541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7995470196807174578}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daf2e1c71d551ee40acecae5f3072ac4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fullColor: {r: 1, g: 1, b: 1, a: 1}
-  image: {fileID: 1543120781782394500}
-  needType: 0
 --- !u!1 &5987943916054925503
 GameObject:
   m_ObjectHideFlags: 0
@@ -189,6 +161,34 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_ShowMaskGraphic: 1
+--- !u!114 &-3012969680601372959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995470196807174578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e419d247f84bd8459f49922f66182fd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  needType: 0
+--- !u!114 &-2298032170490461541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7995470196807174578}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: daf2e1c71d551ee40acecae5f3072ac4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fullColor: {r: 1, g: 1, b: 1, a: 1}
+  image: {fileID: 1543120781782394500}
+  needType: 0
 --- !u!1001 &520823626669053487
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -309,7 +309,7 @@ PrefabInstance:
     - target: {fileID: 7624536565151653791, guid: 6f34ece70afdfb740a57788b5d31efdc,
         type: 3}
       propertyPath: m_text
-      value: DefaultNeed 10
+      value: DefaultNeed
       objectReference: {fileID: 0}
     - target: {fileID: 7624536565151653791, guid: 6f34ece70afdfb740a57788b5d31efdc,
         type: 3}

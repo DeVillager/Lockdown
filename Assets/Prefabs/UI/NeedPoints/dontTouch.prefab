@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7624536565151653790}
   - component: {fileID: 7624536565151653791}
   m_Layer: 5
-  m_Name: NeedPoints
+  m_Name: dontTouch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -63,7 +63,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Energy 10
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d85917d418a7aa64baa593f080520ea4, type: 2}
   m_sharedMaterial: {fileID: -1874947499692236180, guid: d85917d418a7aa64baa593f080520ea4,

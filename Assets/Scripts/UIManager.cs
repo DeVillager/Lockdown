@@ -23,11 +23,8 @@ public class UIManager : Singleton<UIManager>
     //TODO Remove update and change by call
     private void Update()
     {
-        //string amOrPm = GameManager.Instance.Time < 12 ? "AM" : "PM";
-        //timeText.text = $"{GameManager.Instance.Time % 12}.00 {amOrPm}";
         hoursRemainingText.text = $"Day remaining {24 - (GameManager.Instance.Time)}h";
-        //daysToDeadLineText.text = $"Days until deadline: {GameManager.Instance.DaysToDeadLine}";
-        moneyText.text = $"Money\n{Player.Instance.money}G";
+        moneyText.text = $"Money\n{Player.Instance.Money}G";
 
         daysRemainingText.text = $"Days until deadline\n{GameManager.Instance.DaysToDeadLine}";
     }

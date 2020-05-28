@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Types;
 using UnityEditorInternal;
 using UnityEngine;
@@ -24,6 +25,8 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private GameObject victoryScreen;
     public GameState gameState = GameState.Game;
+    public bool testing = true;
+    public bool hardMode = true;
 
     public int DaysToDeadLine { get => daysToDeadLine; set => daysToDeadLine = value; }
     public int Time
@@ -51,6 +54,11 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
+    internal void SetGameOverMessage(object gameOverMessage)
+    {
+        throw new NotImplementedException();
+    }
+
     private void Start()
     {
         LoadNextDay();
@@ -61,7 +69,7 @@ public class GameManager : Singleton<GameManager>
     {
         StartCoroutine(ShowScreen(daysRemainingScreen, splashScreenTime));
         Player.Instance.NextDay();
-        TaskManager.Instance.NextDay();
+        TaskManager.Instance.NewTask();
     }
 
     private IEnumerator ShowScreen(GameObject screen, float time)
@@ -88,6 +96,25 @@ public class GameManager : Singleton<GameManager>
             default:
                 break;
         }
+        ResetGame();
+    }
+
+    public void ResetGame()
+    {
+        Debug.Log("Resetting game");
+        Player.Instance.Reset();
+        daysToDeadLine = 10;
+        time = 0;
+        TaskManager.Instance.Reset();
+        PCMenu.Instance.HideMenus();
+        ShopManager.Instance.Reset();
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        LoadNextDay();
+    }
+
+    public void SetGameOverMessage(string msg)
+    {
+        gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = $"{msg}\n\nGAME OVER";
     }
 
     //TODO using same functions to display screens

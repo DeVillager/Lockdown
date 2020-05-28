@@ -163,27 +163,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9c41bfed67d0b04ba06f082f052a51f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  money: 10
+  startMoney: 10
   exp: 0
   needs:
   - type: 0
     points: 10
     maxPoints: 10
-    depletionHours: 1
+    gameOverMessage: 
   - type: 1
     points: 10
     maxPoints: 10
-    depletionHours: 1
+    gameOverMessage: 
   - type: 2
     points: 10
     maxPoints: 10
-    depletionHours: 1
+    gameOverMessage: 
   - type: 3
     points: 10
     maxPoints: 10
-    depletionHours: 1
+    gameOverMessage: 
   - type: 4
     points: 10
     maxPoints: 10
-    depletionHours: 1
+    gameOverMessage: 
   controller: {fileID: 0}

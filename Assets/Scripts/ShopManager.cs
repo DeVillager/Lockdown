@@ -5,15 +5,33 @@ using UnityEngine;
 
 public class ShopManager : Singleton<ShopManager>
 {
-    //Dictionary<string, GameObject> shopItems;
-    //public List<KeyValuePair<string, GameObject>> shopItemList;
-    //protected override void Awake()
-    //{
-    //    base.Awake();
-    //    foreach (KeyValuePair<string, GameObject> name in shopItemList)
-    //    {
-    //        shopItems[name.Key] = name.Value;
-    //    }
-    //}
+    public GameObject[] shopItems;
+    public Transform itemList;
 
+    private void Start()
+    {
+        CreateItems();
+    }
+
+    public void Reset()
+    {
+        DestroyItems();
+        CreateItems();
+    }
+
+    public void CreateItems()
+    {
+        foreach (GameObject shopItem in shopItems)
+        {
+            Instantiate(shopItem, itemList);
+        }
+    }
+
+    public void DestroyItems()
+    {
+        foreach (Transform child in itemList.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
 }

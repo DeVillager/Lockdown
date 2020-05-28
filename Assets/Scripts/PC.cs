@@ -10,10 +10,19 @@ public class PC : Item
 {
     public GameObject homeWindow;
     public GameObject shopWindow;
-    public GameObject firstButton;
+    public GameObject workButton;
     public int mentality;
     public GameObject foodOrder;
     public Vector2 foodOrderPosition;
+    //private PCMenu pcMenu;
+
+    private void Start()
+    {
+        homeWindow = PCMenu.Instance.homeWindow;
+        shopWindow = PCMenu.Instance.shopWindow;
+        workButton = PCMenu.Instance.workButton;
+        PCMenu.Instance.SetPC(this);
+    }
 
     public override void Use()
     {
@@ -48,7 +57,7 @@ public class PC : Item
     {
         UIManager.Instance.SetText($"I turned on PC.");
         homeWindow.SetActive(true);
-        EventSystem.current.SetSelectedGameObject(firstButton);
+        EventSystem.current.SetSelectedGameObject(workButton);
         Player.Instance.controller.enabled = false;
     }
 

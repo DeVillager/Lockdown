@@ -11,6 +11,7 @@ public class NeedManager : Singleton<NeedManager>
     public InfoText[] needTexts;
     public TextMeshProUGUI infoText;
     private GameManager gameManager;
+    //public string gameOverMessage;
 
     private void Start()
     {
@@ -40,6 +41,14 @@ public class NeedManager : Singleton<NeedManager>
 
     public void SufferFromNeed(Need playerNeed)
     {
+        if (GameManager.Instance.hardMode)
+        {
+            GameManager.Instance.SetGameOverMessage(playerNeed.gameOverMessage);
+            GameManager.Instance.gameState = GameState.GameOver;
+            GameManager.Instance.GameEnd();
+            return;
+        }
+
         NeedType needType = playerNeed.Type;
         switch (needType)
         {

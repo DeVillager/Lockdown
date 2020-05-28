@@ -45,7 +45,7 @@ PrefabInstance:
     - target: {fileID: 7995470196807174576, guid: 31af6346b850cfe4f9eefba5572021b3,
         type: 3}
       propertyPath: m_text
-      value: Fun 10
+      value: Fun
       objectReference: {fileID: 0}
     - target: {fileID: 7995470196807174576, guid: 31af6346b850cfe4f9eefba5572021b3,
         type: 3}

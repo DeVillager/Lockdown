@@ -6,11 +6,14 @@ using ValueType = Types.ValueType;
 
 public class Player : Singleton<Player>
 {
-    public int money;
+    public int startMoney;
+    private int money = 0;
     public int exp = 0;
     public Need[] needs;
     [HideInInspector]
     public PlayerController controller;
+
+    public int Money { get => money; set => money = value; }
 
     public Need GetNeed(NeedType type)
     {
@@ -28,6 +31,7 @@ public class Player : Singleton<Player>
     {
         base.Awake();
         controller = GetComponent<PlayerController>();
+        Money = startMoney;
     }
 
     public GameObject GetCollidingObject()
@@ -39,7 +43,7 @@ public class Player : Singleton<Player>
     public void IncreaseMoney(int amount)
     {
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Money, amount);
-        money += amount;
+        Money += amount;
     }
 
     public Item GetCollidingItem()
@@ -66,5 +70,20 @@ public class Player : Singleton<Player>
     {
         Need need = GetNeed(needType);
         need.Points += amount;
+    }
+
+    public void Reset()
+    {
+        controller.Reset();
+        ResetNeeds();
+        Money = startMoney;
+    }
+
+    public void ResetNeeds()
+    {
+        foreach (Need need in needs)
+        {
+            need.Points = need.MaxPoints;
+        }
     }
 }

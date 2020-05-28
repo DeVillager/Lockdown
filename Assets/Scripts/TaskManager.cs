@@ -19,16 +19,17 @@ public class TaskManager : Singleton<TaskManager>
     [SerializeField]
     private TextMeshProUGUI lockDownTasksDone;
     private int dailyTaskrequiredAmount = 0;
+    private bool taskDone = false;
 
     protected override void Awake()
     {
         base.Awake();
     }
 
-    public void NextDay()
+    public void NewTask()
     {
         InitDailyPoints();
-        MakeDailyTask();
+        MakeTask();
     }
 
     public void InitDailyPoints()
@@ -61,7 +62,7 @@ public class TaskManager : Singleton<TaskManager>
         GameManager.Instance.GameEnd();
     }
 
-    public void MakeDailyTask()
+    public void MakeTask()
     {
         if (newTask != null)
         {
@@ -91,14 +92,15 @@ public class TaskManager : Singleton<TaskManager>
 
     public void GetReward()
     {
-        if (dailyTask.completed)
-        {
-            return;
-        }
+        //if (dailyTask.completed)
+        //{
+        //    return;
+        //}
         tasksDone++;
         Player.Instance.exp += dailyTask.expPoints;
         lockDownTasksDone.text = $"Lockdown tasks done:\n{tasksDone}/{requiredTasksDone}";
-        dailyTask.completed = true;
+        //dailyTask.completed = true;
+        taskDone = true;
     }
 
     private void CheckIfDailyTaskDone()
@@ -112,6 +114,11 @@ public class TaskManager : Singleton<TaskManager>
         }
     }
 
+    public void Reset()
+    {
+        tasksDone = 0;
+        NewTask();
+    }
 
     private void UpdateDailyTaskText()
     {
@@ -121,9 +128,18 @@ public class TaskManager : Singleton<TaskManager>
         {
             dailyTask.descriptionText.text = $"{dailyTask.description}\n({remaining} more)";
         }
-        else
+        //else
+        //{
+        //    dailyTask.descriptionText.text = "Task done!";
+        //}
+    }
+
+    private void Update()
+    {
+        if (taskDone)
         {
-            dailyTask.descriptionText.text = "Task done!";
+            taskDone = false;
+            NewTask();
         }
     }
 }
