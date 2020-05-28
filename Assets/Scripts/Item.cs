@@ -29,7 +29,6 @@ public class Item : MonoBehaviour
             {
                 restoredMsg += $"({restoredNeed.Type} +{restoredNeed.Points}) ";
                 Player.Instance.IncreaseNeed(restoredNeed.Type, restoredNeed.Points);
-                
             }
             else
             {

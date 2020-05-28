@@ -168,17 +168,22 @@ MonoBehaviour:
   needs:
   - type: 0
     points: 10
+    maxPoints: 10
     depletionHours: 1
   - type: 1
     points: 10
+    maxPoints: 10
     depletionHours: 1
   - type: 2
     points: 10
+    maxPoints: 10
     depletionHours: 1
   - type: 3
     points: 10
+    maxPoints: 10
     depletionHours: 1
   - type: 4
     points: 10
+    maxPoints: 10
     depletionHours: 1
   controller: {fileID: 0}

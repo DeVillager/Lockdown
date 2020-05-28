@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField]
     private int daysToDeadLine = 20;
     [SerializeField]
-    private int time = 9;
+    private int time = 0;
     [SerializeField]
     private float splashScreenTime = 1f;
     [SerializeField]

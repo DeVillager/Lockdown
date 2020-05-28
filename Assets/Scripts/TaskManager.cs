@@ -45,6 +45,7 @@ public class TaskManager : Singleton<TaskManager>
         {
             dailyPoints[valueAmount.valueType] = valueAmount.amount;
         }
+        lockDownTasksDone.text = $"Lockdown tasks done:\n{tasksDone}/{requiredTasksDone}";
     }
 
     public void CheckProgress()
