@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   restoredNeeds: []
-  useTime: 1
+  useTime: 2
   useMessage: 
   homeWindow: {fileID: 0}
   shopWindow: {fileID: 0}
-  firstButton: {fileID: 0}
+  workButton: {fileID: 0}
   mentality: 0
   foodOrder: {fileID: 0}
   foodOrderPosition: {x: 0, y: 0}

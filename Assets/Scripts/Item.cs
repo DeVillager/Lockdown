@@ -17,10 +17,12 @@ public class Item : MonoBehaviour
     public int UseTime { get => useTime; set => useTime = value; }
     public Need[] RestoredNeeds { get => restoredNeeds; set => restoredNeeds = value; }
     public string UseMessage { get => useMessage; set => useMessage = value; }
-    
+    private bool itemUsed = false;
+
 
     public virtual void Use()
     {
+        itemUsed = true;
         string restoredMsg = "";
         foreach (Need playerNeed in Player.Instance.needs)
         {
@@ -37,7 +39,18 @@ public class Item : MonoBehaviour
         }
         UIManager.Instance.SetText($"{UseMessage} {restoredMsg}");
         NeedManager.Instance.UpdateNeeds();
-        GameManager.Instance.Time += UseTime;
+        DataManager.Instance.tasksDone = TaskManager.Instance.tasksDone;
+        DataManager.Instance.money = Player.Instance.Money;
+        DataManager.Instance.AddData();
+    }
+
+    public void LateUpdate()
+    {
+        if (itemUsed)
+        {
+            GameManager.Instance.Time += UseTime;
+            itemUsed = false;
+        }
     }
 
     public Need GetNeed(NeedType needType)

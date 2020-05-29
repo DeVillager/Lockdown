@@ -6,14 +6,30 @@ using ValueType = Types.ValueType;
 
 public class Player : Singleton<Player>
 {
-    public int startMoney;
+    public int startMoney = 5;
+    public int needStartAmount = 5;
     private int money = 0;
-    public int exp = 0;
+    private int exp = 0;
     public Need[] needs;
     [HideInInspector]
     public PlayerController controller;
 
     public int Money { get => money; set => money = value; }
+    public int Exp
+    {
+        get => exp;
+        set
+        {
+            exp = value;
+            if (exp >= GameManager.Instance.maxExp)
+            {
+                exp = 0;
+                GameManager.Instance.maxExp += 2;
+                GameManager.Instance.hourlyWage++;
+                UIManager.Instance.SetText($"Level up!\nYour wage has increased to {GameManager.Instance.hourlyWage}.");
+            }
+        }
+    }
 
     public Need GetNeed(NeedType type)
     {
@@ -31,8 +47,9 @@ public class Player : Singleton<Player>
     {
         base.Awake();
         controller = GetComponent<PlayerController>();
-        Money = startMoney;
+        Reset();
     }
+
 
     public GameObject GetCollidingObject()
     {
@@ -58,6 +75,11 @@ public class Player : Singleton<Player>
 
     public void NextDay()
     {
+        ResetPosition();
+    }
+
+    public void ResetPosition()
+    {
         controller.Reset();
     }
 
@@ -74,7 +96,7 @@ public class Player : Singleton<Player>
 
     public void Reset()
     {
-        controller.Reset();
+        ResetPosition();
         ResetNeeds();
         Money = startMoney;
     }
@@ -83,7 +105,7 @@ public class Player : Singleton<Player>
     {
         foreach (Need need in needs)
         {
-            need.Points = need.MaxPoints;
+            need.Points = needStartAmount;
         }
     }
 }

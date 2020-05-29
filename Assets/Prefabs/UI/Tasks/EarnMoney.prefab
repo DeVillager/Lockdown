@@ -50,10 +50,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   taskName: earnMoney
-  description: Earn 5G.
+  description: Earn 3G.
   taskType: 0
   needType: 0
-  requiredAmount: 5
+  requiredAmount: 3
   expPoints: 0
   descriptionText: {fileID: 0}
   valueType: 0

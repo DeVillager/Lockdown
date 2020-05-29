@@ -27,6 +27,7 @@ public class GameManager : Singleton<GameManager>
     public GameState gameState = GameState.Game;
     public bool testing = true;
     public bool hardMode = true;
+    public int maxExp = 10;
 
     public int DaysToDeadLine { get => daysToDeadLine; set => daysToDeadLine = value; }
     public int Time
@@ -54,11 +55,6 @@ public class GameManager : Singleton<GameManager>
         }
     }
 
-    internal void SetGameOverMessage(object gameOverMessage)
-    {
-        throw new NotImplementedException();
-    }
-
     private void Start()
     {
         LoadNextDay();
@@ -67,22 +63,26 @@ public class GameManager : Singleton<GameManager>
     //TODO move to another script
     public void LoadNextDay()
     {
+        Player.Instance.controller.enabled = true;
         StartCoroutine(ShowScreen(daysRemainingScreen, splashScreenTime));
+        PCMenu.Instance.HideMenus();
         Player.Instance.NextDay();
         TaskManager.Instance.NewTask();
     }
 
     private IEnumerator ShowScreen(GameObject screen, float time)
     {
-        Player.Instance.controller.enabled = false;
+        //Player.Instance.controller.enabled = false;
         screen.SetActive(true);
         yield return new WaitForSeconds(time);
         screen.SetActive(false);
-        Player.Instance.controller.enabled = true;
+        //Player.Instance.controller.enabled = true;
+        //Player.Instance.Reset();
     }
 
     public void GameEnd()
     {
+        
         switch (gameState)
         {
             case GameState.Game:
@@ -96,13 +96,20 @@ public class GameManager : Singleton<GameManager>
             default:
                 break;
         }
+        DataManager.Instance.PrintData();
         ResetGame();
+    }
+
+    private void PrintData()
+    {
+        Debug.Log($"Money: {Player.Instance.Money}");
+        Debug.Log($"Exp: {Player.Instance.Exp}");
+        Debug.Log($"Tasks done: {TaskManager.Instance.tasksDone}");
     }
 
     public void ResetGame()
     {
         Debug.Log("Resetting game");
-        Player.Instance.Reset();
         daysToDeadLine = 10;
         time = 0;
         TaskManager.Instance.Reset();

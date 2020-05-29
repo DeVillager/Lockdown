@@ -14,6 +14,9 @@ public class PC : Item
     public int mentality;
     public GameObject foodOrder;
     public Vector2 foodOrderPosition;
+    public Refrigerator refrigerator;
+    public int studyExp = 1;
+    public int foodOrderPrice = 1;
     //private PCMenu pcMenu;
 
     private void Start()
@@ -36,8 +39,8 @@ public class PC : Item
         UIManager.Instance.SetText($"You worked hard and earned {wage}G.");
         Player.Instance.IncreaseMoney(wage);
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Work, UseTime);
-    }   
-    
+    }
+
     public void Chat()
     {
         base.Use();
@@ -48,9 +51,17 @@ public class PC : Item
     //TODO OrderFood
     public void OrderFood()
     {
-        base.Use();
-        UIManager.Instance.SetText($"Ordered some food.\nIt should arrive shortly.");
-        Instantiate(foodOrder, foodOrderPosition, Quaternion.identity);
+        if (Player.Instance.Money >= foodOrderPrice)
+        {
+            base.Use();
+            refrigerator.Fill();
+            Player.Instance.Money -= foodOrderPrice;
+            UIManager.Instance.SetText($"Ordered some food.\nRefrigerator filled.");
+        }
+        else
+        {
+            UIManager.Instance.SetText($"Not enough money!");
+        }
     }
 
     public void OpenPC()
@@ -59,6 +70,15 @@ public class PC : Item
         homeWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(workButton);
         Player.Instance.controller.enabled = false;
+    }
+
+    public void Study()
+    {
+        DataManager.Instance.exp += studyExp;
+        base.Use();
+        Player.Instance.Exp += studyExp;
+        TaskManager.Instance.IncreaseDailyPoints(ValueType.Exp, studyExp);
+        UIManager.Instance.SetText($"You studied hard.\n(EXP +{studyExp})");
     }
 
     public void ClosePC()

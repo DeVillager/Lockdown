@@ -75,4 +75,10 @@ public class PCMenu : Singleton<PCMenu>
         pc.CloseShop();
         EventSystem.current.SetSelectedGameObject(shopButton);
     }
+
+    public void Study()
+    {
+        pc.Study();
+    }
+
 }

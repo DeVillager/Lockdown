@@ -28,6 +28,7 @@ namespace Types
     {
         Money,
         Work,
+        Exp,
     }
 
     [Serializable]
@@ -42,6 +43,25 @@ namespace Types
         Game,
         GameOver,
         Victory
+    }
+
+    public class Data
+    {
+        public int money;
+        public int tasksDone;
+        public int needIncreased;
+        public int needDecreased;
+        public int exp;
+
+        public Data(int money, int tasksDone, int needIncreased, int needDecreased, int exp)
+        {
+            this.money = money;
+            this.tasksDone = tasksDone;
+            this.needIncreased = needIncreased;
+            this.needIncreased = needIncreased;
+            this.needDecreased = needDecreased;
+            this.exp = exp;
+        }
     }
 }
 

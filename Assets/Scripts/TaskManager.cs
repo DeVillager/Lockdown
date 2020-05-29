@@ -97,7 +97,7 @@ public class TaskManager : Singleton<TaskManager>
         //    return;
         //}
         tasksDone++;
-        Player.Instance.exp += dailyTask.expPoints;
+        Player.Instance.Exp += dailyTask.expPoints;
         lockDownTasksDone.text = $"Lockdown tasks done:\n{tasksDone}/{requiredTasksDone}";
         //dailyTask.completed = true;
         taskDone = true;

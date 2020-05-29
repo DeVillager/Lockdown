@@ -48,7 +48,12 @@ public class Need
         if (rand < 0.5f)
         {
             Points--;
+            DataManager.Instance.needDecreased++;
         }
+        DataManager.Instance.needDecreaseTimes++;
+        DataManager.Instance.AddData();
+
+
         if (Points <= 0)
         {
             NeedManager.Instance.SufferFromNeed(this);
