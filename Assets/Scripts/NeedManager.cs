@@ -45,7 +45,7 @@ public class NeedManager : Singleton<NeedManager>
         {
             GameManager.Instance.SetGameOverMessage(playerNeed.gameOverMessage);
             GameManager.Instance.gameState = GameState.GameOver;
-            GameManager.Instance.GameEnd();
+            //GameManager.Instance.GameEnd();
             return;
         }
 

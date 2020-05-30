@@ -60,6 +60,7 @@ public class Player : Singleton<Player>
     public void IncreaseMoney(int amount)
     {
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Money, amount);
+        DataManager.Instance.money += amount;
         Money += amount;
     }
 
@@ -96,7 +97,6 @@ public class Player : Singleton<Player>
 
     public void Reset()
     {
-        ResetPosition();
         ResetNeeds();
         Money = startMoney;
     }

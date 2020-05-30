@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         inverseMoveTime = 1f / moveTime;
         animator = GetComponent<Animator>();
-        //SetStartPosition();
+        Reset();
     }
 
     void Update()

@@ -190,8 +190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 95.24, y: 0}
-  m_SizeDelta: {x: 190.48, y: 30}
+  m_AnchoredPosition: {x: 119.19, y: 0}
+  m_SizeDelta: {x: 238.39, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4837339585814089642
 CanvasRenderer:
@@ -350,8 +350,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 70.26, y: 0}
-  m_SizeDelta: {x: 245, y: 30}
+  m_AnchoredPosition: {x: 70.26001, y: 0}
+  m_SizeDelta: {x: 280, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3177610993213475859
 CanvasRenderer:
@@ -457,7 +457,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: ItemName
   nameText: {fileID: 6254781098024849017}
-  price: 6
+  price: 4
   priceText: {fileID: 8104428202260621239}
   item: {fileID: 4680992854581591585, guid: b169a4acd61d010449686c4a77b53009, type: 3}
   location: {x: -2, y: 0}
+  unlockItems: []
+  previousVersion: {fileID: 0}
+  isUpgrade: 0

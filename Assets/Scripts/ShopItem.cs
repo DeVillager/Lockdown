@@ -19,9 +19,13 @@ public class ShopItem : MonoBehaviour
     private GameObject item;
     [SerializeField]
     private Vector2 location;
-    [SerializeField]
     private GameObject nextShopItem;
     private int siblingIndex;
+
+    public GameObject[] unlockItems;
+    public GameObject previousVersion = null;
+    private GameObject newItem = null;
+    public bool isUpgrade = false;
 
     private void Awake()
     {
@@ -54,9 +58,9 @@ public class ShopItem : MonoBehaviour
     {
         if (Player.Instance.Money >= price)
         {
-            GameObject newItem = Instantiate(item, location, Quaternion.identity);
-            newItem.name = itemName;
             Player.Instance.Money -= price;
+            CreateItem();
+            
             AssignNextItem();
             UIManager.Instance.SetText($"You bought {itemName}!");
             Destroy(gameObject);
@@ -64,6 +68,27 @@ public class ShopItem : MonoBehaviour
         else
         {
             UIManager.Instance.SetText("Not enough money.");
+        }
+    }
+
+    public GameObject CreateItem()
+    {
+        if (previousVersion != null && isUpgrade)
+        {
+            Destroy(previousVersion);
+        }
+        newItem = Instantiate(item, location, Quaternion.identity);
+        newItem.name = itemName;
+        UnlockNewShopItems();
+        return newItem;
+    }
+
+    public void UnlockNewShopItems()
+    {
+        foreach (GameObject shopItem in unlockItems)
+        {
+            ShopItem unlockedItem = ShopManager.Instance.CreateShopItem(shopItem);
+            unlockedItem.previousVersion = newItem;
         }
     }
 }

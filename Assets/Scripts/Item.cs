@@ -13,6 +13,7 @@ public class Item : MonoBehaviour
     private int useTime = 1;
     [SerializeField]
     private string useMessage;
+    public string otherInfo;
 
     public int UseTime { get => useTime; set => useTime = value; }
     public Need[] RestoredNeeds { get => restoredNeeds; set => restoredNeeds = value; }
@@ -29,7 +30,7 @@ public class Item : MonoBehaviour
             Need restoredNeed = GetNeed(playerNeed.Type);
             if (restoredNeed != null)
             {
-                restoredMsg += $"({restoredNeed.Type} +{restoredNeed.Points}) ";
+                restoredMsg += $"({restoredNeed.Type} +{restoredNeed.Points})\n";
                 Player.Instance.IncreaseNeed(restoredNeed.Type, restoredNeed.Points);
             }
             else
@@ -37,10 +38,9 @@ public class Item : MonoBehaviour
                 playerNeed.DecreasePoints(useTime);
             }
         }
-        UIManager.Instance.SetText($"{UseMessage} {restoredMsg}");
+        UIManager.Instance.SetText($"{UseMessage}\n{restoredMsg}");
         NeedManager.Instance.UpdateNeeds();
         DataManager.Instance.tasksDone = TaskManager.Instance.tasksDone;
-        DataManager.Instance.money = Player.Instance.Money;
         DataManager.Instance.AddData();
     }
 

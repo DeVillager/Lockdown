@@ -45,6 +45,14 @@ namespace Types
         Victory
     }
 
+    public enum PCType
+    {
+        Normal,
+        Fast,
+        Super,
+        Quantum,
+    }
+
     public class Data
     {
         public int money;

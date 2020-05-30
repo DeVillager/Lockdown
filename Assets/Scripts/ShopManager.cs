@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -6,25 +7,35 @@ using UnityEngine;
 public class ShopManager : Singleton<ShopManager>
 {
     public GameObject[] shopItems;
-    public Transform itemList;
+    public GameObject itemList;
 
-    private void Start()
+    protected override void Awake()
     {
-        CreateItems();
+        base.Awake();
+        Reset();
+        //CreateShopItems();
     }
 
     public void Reset()
     {
         DestroyItems();
-        CreateItems();
+        CreateShopItems();
     }
 
-    public void CreateItems()
+    public void CreateShopItems()
     {
         foreach (GameObject shopItem in shopItems)
         {
-            Instantiate(shopItem, itemList);
+            ShopItem newShopItem = CreateShopItem(shopItem);
+            newShopItem.CreateItem();
+            Destroy(newShopItem.gameObject);
         }
+    }
+
+    public ShopItem CreateShopItem(GameObject shopItem)
+    {
+        ShopItem newItem = Instantiate(shopItem, itemList.transform).GetComponent<ShopItem>();
+        return newItem;
     }
 
     public void DestroyItems()

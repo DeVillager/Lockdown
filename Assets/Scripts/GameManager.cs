@@ -24,10 +24,13 @@ public class GameManager : Singleton<GameManager>
     private GameObject gameOverScreen;
     [SerializeField]
     private GameObject victoryScreen;
+
     public GameState gameState = GameState.Game;
     public bool testing = true;
     public bool hardMode = true;
-    public int maxExp = 10;
+    [HideInInspector]
+    public int maxExp = 5;
+    public int maxExpStart = 5;
 
     public int DaysToDeadLine { get => daysToDeadLine; set => daysToDeadLine = value; }
     public int Time
@@ -60,38 +63,55 @@ public class GameManager : Singleton<GameManager>
         LoadNextDay();
     }
 
+    protected override void Awake()
+    {
+        base.Awake();
+        maxExp = maxExpStart;
+    }
+
     //TODO move to another script
     public void LoadNextDay()
     {
-        Player.Instance.controller.enabled = true;
-        StartCoroutine(ShowScreen(daysRemainingScreen, splashScreenTime));
+        //Player.Instance.controller.enabled = true;
+        StartCoroutine(ShowScreen(daysRemainingScreen, splashScreenTime, false));
         PCMenu.Instance.HideMenus();
         Player.Instance.NextDay();
         TaskManager.Instance.NewTask();
     }
 
-    private IEnumerator ShowScreen(GameObject screen, float time)
+    private IEnumerator ShowScreen(GameObject screen, float time, bool endScreen)
     {
-        //Player.Instance.controller.enabled = false;
+        Player.Instance.controller.enabled = false;
+        //yield return new WaitForSeconds(0.5f);
         screen.SetActive(true);
         yield return new WaitForSeconds(time);
         screen.SetActive(false);
-        //Player.Instance.controller.enabled = true;
-        //Player.Instance.Reset();
+        Player.Instance.controller.enabled = !endScreen;
+        if (endScreen)
+        {
+            StartCoroutine(ShowScreen(daysRemainingScreen, splashScreenTime, false));
+        }
+    }
+
+    private void Update()
+    {
+        if (gameState == GameState.GameOver || gameState == GameState.Victory)
+        {
+            GameEnd();
+        }
     }
 
     public void GameEnd()
     {
-        
         switch (gameState)
         {
             case GameState.Game:
                 break;
             case GameState.GameOver:
-                StartCoroutine(ShowScreen(gameOverScreen, gameEndTime));
+                StartCoroutine(ShowScreen(gameOverScreen, gameEndTime, true));
                 break;
             case GameState.Victory:
-                StartCoroutine(ShowScreen(victoryScreen, gameEndTime));
+                StartCoroutine(ShowScreen(victoryScreen, gameEndTime, true));
                 break;
             default:
                 break;
@@ -110,27 +130,25 @@ public class GameManager : Singleton<GameManager>
     public void ResetGame()
     {
         Debug.Log("Resetting game");
+        gameState = GameState.Game;
         daysToDeadLine = 10;
         time = 0;
+        hourlyWage = 1;
         TaskManager.Instance.Reset();
         PCMenu.Instance.HideMenus();
-        ShopManager.Instance.Reset();
+        ShopManager.Instance.DestroyItems();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-        LoadNextDay();
+        Player.Instance.Reset();
+        Player.Instance.Exp = 0;
+        Player.Instance.ResetPosition();
+        PCMenu.Instance.HideMenus();
+        //Player.Instance.NextDay();
+        TaskManager.Instance.NewTask();
+        //LoadNextDay();
     }
 
     public void SetGameOverMessage(string msg)
     {
         gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = $"{msg}\n\nGAME OVER";
     }
-
-    //TODO using same functions to display screens
-    //private IEnumerator ShowScreen(GameObject screen, float time)
-    //{
-    //    Player.Instance.controller.enabled = false;
-    //    daysRemainingScreen.SetActive(true);
-    //    yield return new WaitForSeconds(time);
-    //    daysRemainingScreen.SetActive(false);
-    //    Player.Instance.controller.enabled = true;
-    //}
 }

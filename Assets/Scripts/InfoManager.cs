@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
 public class InfoManager : MonoBehaviour
@@ -14,6 +15,8 @@ public class InfoManager : MonoBehaviour
     private ItemRestores itemRestores;
     [SerializeField]
     private Image itemImage;
+    [SerializeField]
+    private TextMeshProUGUI otherInfo;
 
     private void Awake()
     {
@@ -40,6 +43,7 @@ public class InfoManager : MonoBehaviour
         Item collidedItem = collidedObject.GetComponent<Item>();
         itemName.text = $"{collidedItem.gameObject.name}";
         useTime.text = $"Use time: {collidedItem.UseTime}h";
+        otherInfo.text = collidedItem.otherInfo;
         itemRestores.ShowRestorePoints();
         itemImage.enabled = true;
         itemImage.sprite = collidedItem.GetSprite();
@@ -49,7 +53,10 @@ public class InfoManager : MonoBehaviour
     {
         itemName.text = "";
         useTime.text = "";
+        otherInfo.text = "";
         itemRestores.HideRestorePoints();
         itemImage.enabled = false;
     }
+
+    
 }

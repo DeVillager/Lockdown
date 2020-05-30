@@ -20,7 +20,19 @@ public class UIManager : Singleton<UIManager>
     private TextMeshProUGUI infoText;    
     [SerializeField]
     private TextMeshProUGUI playerExpText;
+    //[SerializeField]
+    private string defaultText = "WASD = Moving\nLEFT CTRL = Use\nESC = Restart Lockdown";
 
+    protected override void Awake()
+    {
+        base.Awake();
+        SetText("");
+    }
+
+    private void Start()
+    {
+        SetText(defaultText);
+    }
 
     //TODO Remove update and change by call
     private void Update()
@@ -35,4 +47,5 @@ public class UIManager : Singleton<UIManager>
     {
         infoText.text = text;
     }
+
 }

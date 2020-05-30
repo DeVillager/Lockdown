@@ -14,10 +14,15 @@ public class PC : Item
     public int mentality;
     public GameObject foodOrder;
     public Vector2 foodOrderPosition;
-    public Refrigerator refrigerator;
     public int studyExp = 1;
     public int foodOrderPrice = 1;
     //private PCMenu pcMenu;
+    public static PC Instance;
+    [HideInInspector]
+    public Refrigerator refrigerator;
+
+    [HideInInspector]
+    public PCType pcType = PCType.Normal;
 
     private void Start()
     {
@@ -25,6 +30,18 @@ public class PC : Item
         shopWindow = PCMenu.Instance.shopWindow;
         workButton = PCMenu.Instance.workButton;
         PCMenu.Instance.SetPC(this);
+    }
+
+    public void Awake()
+    {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else if (Instance != this)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public override void Use()
@@ -36,7 +53,7 @@ public class PC : Item
     {
         base.Use();
         int wage = GameManager.Instance.hourlyWage;
-        UIManager.Instance.SetText($"You worked hard and earned {wage}G.");
+        UIManager.Instance.SetText($"You worked hard.\n(+{wage}G)");
         Player.Instance.IncreaseMoney(wage);
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Work, UseTime);
     }
@@ -51,6 +68,11 @@ public class PC : Item
     //TODO OrderFood
     public void OrderFood()
     {
+        if (refrigerator.foodAmount == refrigerator.maxFoodAmount)
+        {
+            UIManager.Instance.SetText($"Refrigerator is full already!");
+            return;
+        }
         if (Player.Instance.Money >= foodOrderPrice)
         {
             base.Use();
@@ -74,18 +96,18 @@ public class PC : Item
 
     public void Study()
     {
-        DataManager.Instance.exp += studyExp;
         base.Use();
+        UIManager.Instance.SetText($"You studied hard.\n(EXP +{studyExp})");
+        DataManager.Instance.exp += studyExp;
         Player.Instance.Exp += studyExp;
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Exp, studyExp);
-        UIManager.Instance.SetText($"You studied hard.\n(EXP +{studyExp})");
     }
 
     public void ClosePC()
     {
         UIManager.Instance.SetText($"Shutting down PC...");
-        homeWindow.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
+        homeWindow.SetActive(false);
         Player.Instance.controller.enabled = true;
     }
 

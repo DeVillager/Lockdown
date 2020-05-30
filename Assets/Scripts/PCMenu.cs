@@ -14,6 +14,10 @@ public class PCMenu : Singleton<PCMenu>
     public GameObject shopButton;
     [SerializeField]
     private TextMeshProUGUI workText;
+    [SerializeField]
+    private TextMeshProUGUI studyText;
+    [SerializeField]
+    private TextMeshProUGUI orderFoodText;
     private PC pc;
 
     private void Start()
@@ -30,6 +34,8 @@ public class PCMenu : Singleton<PCMenu>
     private void Update()
     {
         workText.text = $"Work (+{GameManager.Instance.hourlyWage}G)";
+        studyText.text = $"Study (+{PC.Instance.studyExp} EXP)";
+        orderFoodText.text = $"Order food ({PC.Instance.foodOrderPrice}G)";
     }
 
     public void SetPC(PC setPC)
