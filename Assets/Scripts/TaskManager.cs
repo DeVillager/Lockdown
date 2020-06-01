@@ -75,9 +75,9 @@ public class TaskManager : Singleton<TaskManager>
     }
 
 
-    private void TaskDone(string doneTaskName)
+    public void TaskDone(TaskAction doneTaskAction)
     {
-        if (dailyTask.taskName == doneTaskName)
+        if (dailyTask.taskType == TaskType.Action && dailyTask.taskAction == doneTaskAction)
         {
             GetReward();
         }
@@ -85,21 +85,19 @@ public class TaskManager : Singleton<TaskManager>
 
     public void IncreaseDailyPoints(ValueType valueType, int amount)
     {
-        dailyPoints[valueType] += amount;
-        CheckIfDailyTaskDone();
-        UpdateDailyTaskText();
+        if (dailyTask.taskType == TaskType.Value)
+        {
+            dailyPoints[valueType] += amount;
+            CheckIfDailyTaskDone();
+        }
+        //UpdateDailyTaskText();
     }
 
     public void GetReward()
     {
-        //if (dailyTask.completed)
-        //{
-        //    return;
-        //}
         tasksDone++;
-        Player.Instance.Exp += dailyTask.expPoints;
+        //Player.Instance.Exp += dailyTask.expPoints;
         lockDownTasksDone.text = $"Lockdown tasks done:\n{tasksDone}/{requiredTasksDone}";
-        //dailyTask.completed = true;
         taskDone = true;
     }
 
@@ -122,20 +120,29 @@ public class TaskManager : Singleton<TaskManager>
 
     private void UpdateDailyTaskText()
     {
-        ValueType valueType = dailyTask.valueType;
-        int remaining = dailyTaskrequiredAmount - dailyPoints[valueType];
-        if (remaining > 0)
+        if (dailyTask == null)
         {
-            dailyTask.descriptionText.text = $"{dailyTask.description}\n({remaining} more)";
+            return;
         }
-        //else
-        //{
-        //    dailyTask.descriptionText.text = "Task done!";
-        //}
+        if (dailyTask.taskType == TaskType.Value)
+        {
+            ValueType valueType = dailyTask.valueType;
+            int remaining = dailyTaskrequiredAmount - dailyPoints[valueType];
+            if (remaining > 0)
+            {
+                dailyTask.descriptionText.text = $"{dailyTask.description}\n({remaining} more)";
+            }
+        }
+        else
+        {
+            // TaskType is Action
+            dailyTask.descriptionText.text = $"{dailyTask.description}";
+        }
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
+        UpdateDailyTaskText();
         if (taskDone)
         {
             taskDone = false;

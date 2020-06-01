@@ -10,6 +10,7 @@ public class DataManager : Singleton<DataManager>
     public int needDecreaseTimes;
     public int needDecreased;
     public int exp;
+    public int itemsBought;
     private List<Data> gameData;
 
     private void Start()
@@ -23,11 +24,30 @@ public class DataManager : Singleton<DataManager>
         gameData.Add(data);
     }
 
-    public void PrintData()
+    public string PrintData()
     {
+        string debug = "";
         foreach (Data data in gameData)
         {
-            Debug.Log($"{data.money}  {data.tasksDone}  {data.needIncreased}  {data.needDecreased}  {data.exp}");
+            debug = $"TotalMoney:{data.money}  TasksDone:{data.tasksDone}  TotalExp:{data.exp}";
+            Debug.Log(debug);
         }
+        return debug;
+    }
+
+    public string FinalValues()
+    {
+        return $"MoneyEarned:{money}  ExpEarned:{exp}  TasksDone:{tasksDone}  ItemsBought:{itemsBought}";
+    }
+
+    public void ClearData()
+    {
+        money = 0;
+        tasksDone = 0;
+        needDecreaseTimes = 0;
+        needDecreased = 0;
+        exp = 0;
+        itemsBought = 0;
+        //gameData.Clear();
     }
 }

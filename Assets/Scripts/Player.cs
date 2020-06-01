@@ -108,4 +108,10 @@ public class Player : Singleton<Player>
             need.Points = needStartAmount;
         }
     }
+
+    public void IncreaseExp(int amount)
+    {
+        Exp += amount;
+        TaskManager.Instance.TaskDone(TaskAction.GetExp);
+    }
 }

@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Types;
-using UnityEditorInternal;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
@@ -86,10 +86,27 @@ public class GameManager : Singleton<GameManager>
         screen.SetActive(true);
         yield return new WaitForSeconds(time);
         screen.SetActive(false);
-        Player.Instance.controller.enabled = !endScreen;
-        if (endScreen)
+        //Player.Instance.controller.enabled = !endScreen;
+        Player.Instance.controller.enabled = true;
+        //if (endScreen)
+        //{
+        //    StartCoroutine(ShowScreen(daysRemainingScreen, splashScreenTime, false));
+        //}
+    }
+
+    public void ShowEndScreen(GameObject screen)
+    {
+        Player.Instance.controller.enabled = false;
+        screen.SetActive(true);
+        if (gameState == GameState.GameOver)
         {
-            StartCoroutine(ShowScreen(daysRemainingScreen, splashScreenTime, false));
+            EventSystem.current.SetSelectedGameObject(UIManager.Instance.startOverButtonGameOver.gameObject);
+            UIManager.Instance.SetDebugText(UIManager.Instance.debugTextGameOver);
+        }
+        else
+        {
+            EventSystem.current.SetSelectedGameObject(UIManager.Instance.startOverButtonVictory.gameObject);
+            UIManager.Instance.SetDebugText(UIManager.Instance.debugTextVictory);
         }
     }
 
@@ -108,16 +125,16 @@ public class GameManager : Singleton<GameManager>
             case GameState.Game:
                 break;
             case GameState.GameOver:
-                StartCoroutine(ShowScreen(gameOverScreen, gameEndTime, true));
+                ShowEndScreen(gameOverScreen);
+                //StartCoroutine(ShowScreen(gameOverScreen, gameEndTime, true));
                 break;
             case GameState.Victory:
-                StartCoroutine(ShowScreen(victoryScreen, gameEndTime, true));
+                ShowEndScreen(victoryScreen);
+                //StartCoroutine(ShowScreen(victoryScreen, gameEndTime, true));
                 break;
             default:
                 break;
         }
-        DataManager.Instance.PrintData();
-        ResetGame();
     }
 
     private void PrintData()
@@ -129,15 +146,19 @@ public class GameManager : Singleton<GameManager>
 
     public void ResetGame()
     {
+        Player.Instance.controller.enabled = true;
+        UIManager.Instance.SetDefaultText();
+        DataManager.Instance.PrintData();
+        DataManager.Instance.ClearData();
         Debug.Log("Resetting game");
         gameState = GameState.Game;
         daysToDeadLine = 10;
         time = 0;
         hourlyWage = 1;
-        TaskManager.Instance.Reset();
         PCMenu.Instance.HideMenus();
         ShopManager.Instance.DestroyItems();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        TaskManager.Instance.Reset();
         Player.Instance.Reset();
         Player.Instance.Exp = 0;
         Player.Instance.ResetPosition();

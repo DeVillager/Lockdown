@@ -21,8 +21,10 @@ MonoBehaviour:
   useTime: 1
   useMessage: 
   otherInfo: 'Food left:'
+  decreaseChance: 0.5
   maxFoodAmount: 3
   foodAmount: 0
+  super: 0
 --- !u!1001 &5811631537429455025
 PrefabInstance:
   m_ObjectHideFlags: 0

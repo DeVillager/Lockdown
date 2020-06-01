@@ -21,6 +21,7 @@ MonoBehaviour:
   useTime: 1
   useMessage: 
   otherInfo: 
+  decreaseChance: 0.3
   maxFoodAmount: 5
   foodAmount: 0
   super: 0

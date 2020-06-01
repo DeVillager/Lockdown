@@ -15,12 +15,18 @@ MonoBehaviour:
   restoredNeeds: []
   useTime: 2
   useMessage: 
+  otherInfo: 
+  decreaseChance: 0.5
   homeWindow: {fileID: 0}
   shopWindow: {fileID: 0}
   workButton: {fileID: 0}
-  mentality: 0
+  mentality: 5
   foodOrder: {fileID: 0}
   foodOrderPosition: {x: 0, y: 0}
+  studyExp: 1
+  foodOrderPrice: 1
+  refrigerator: {fileID: 0}
+  pcType: 0
 --- !u!1001 &2655604427355618012
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -46,7 +52,7 @@ PrefabInstance:
     - target: {fileID: 1758333964027075898, guid: 4945440ff6533b44985bd1ce3902cf59,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1758333964027075898, guid: 4945440ff6533b44985bd1ce3902cf59,
         type: 3}
@@ -93,7 +99,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1758333964027075876, guid: 4945440ff6533b44985bd1ce3902cf59, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4945440ff6533b44985bd1ce3902cf59, type: 3}
 --- !u!1 &4376444700461819876 stripped
 GameObject:

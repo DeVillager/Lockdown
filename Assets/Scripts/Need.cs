@@ -42,10 +42,10 @@ public class Need
     //    //this.DepletionTime = depletionHours;
     //}
 
-    public void DecreasePoints(int useTime)
+    public void DecreasePoints(int useTime, float decreaseChance)
     {
         float rand = Random.Range(0f, 1f);
-        if (rand < 0.5f)
+        if (rand < decreaseChance)
         {
             Points--;
             DataManager.Instance.needDecreased++;

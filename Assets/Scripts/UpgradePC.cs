@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using Types;
 
 public class UpgradePC : MonoBehaviour
 {
@@ -21,7 +22,9 @@ public class UpgradePC : MonoBehaviour
         {
             Player.Instance.Money -= price;
             MakeUpgrade();
+            TaskManager.Instance.TaskDone(TaskAction.BuyItem);
             UIManager.Instance.SetText($"You upgraded PC!");
+            DataManager.Instance.itemsBought++;
         }
         else
         {

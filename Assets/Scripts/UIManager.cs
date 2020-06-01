@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -20,8 +21,15 @@ public class UIManager : Singleton<UIManager>
     private TextMeshProUGUI infoText;    
     [SerializeField]
     private TextMeshProUGUI playerExpText;
+
+    public Button startOverButtonGameOver;
+    public TextMeshProUGUI debugTextGameOver;
+    public Button startOverButtonVictory;
+    public TextMeshProUGUI debugTextVictory;
+    
+
     //[SerializeField]
-    private string defaultText = "WASD = Moving\nLEFT CTRL = Use\nESC = Restart Lockdown";
+    private string defaultText = "ARROWS = Moving\nLEFT CTRL = Use\nESC = Restart Lockdown";
 
     protected override void Awake()
     {
@@ -31,7 +39,7 @@ public class UIManager : Singleton<UIManager>
 
     private void Start()
     {
-        SetText(defaultText);
+        SetDefaultText();
     }
 
     //TODO Remove update and change by call
@@ -48,4 +56,13 @@ public class UIManager : Singleton<UIManager>
         infoText.text = text;
     }
 
+    public void SetDebugText(TextMeshProUGUI debugText)
+    {
+        debugText.text = DataManager.Instance.FinalValues();
+    }
+
+    public void SetDefaultText()
+    {
+        SetText(defaultText);
+    }
 }

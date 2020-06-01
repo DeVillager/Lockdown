@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using Types;
 
 public class ShopItem : MonoBehaviour
 {
@@ -63,6 +64,8 @@ public class ShopItem : MonoBehaviour
             
             AssignNextItem();
             UIManager.Instance.SetText($"You bought {itemName}!");
+            TaskManager.Instance.TaskDone(TaskAction.BuyItem);
+            DataManager.Instance.itemsBought++;
             Destroy(gameObject);
         }
         else

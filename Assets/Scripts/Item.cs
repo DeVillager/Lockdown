@@ -14,6 +14,7 @@ public class Item : MonoBehaviour
     [SerializeField]
     private string useMessage;
     public string otherInfo;
+    public float decreaseChance = 0.5f;
 
     public int UseTime { get => useTime; set => useTime = value; }
     public Need[] RestoredNeeds { get => restoredNeeds; set => restoredNeeds = value; }
@@ -35,7 +36,7 @@ public class Item : MonoBehaviour
             }
             else
             {
-                playerNeed.DecreasePoints(useTime);
+                playerNeed.DecreasePoints(useTime, decreaseChance);
             }
         }
         UIManager.Instance.SetText($"{UseMessage}\n{restoredMsg}");

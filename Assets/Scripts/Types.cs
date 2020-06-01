@@ -53,6 +53,15 @@ namespace Types
         Quantum,
     }
 
+    public enum TaskAction
+    {
+        BuyItem,
+        GetExp,
+        Work,
+        OrderFood,
+        Study,
+    }
+
     public class Data
     {
         public int money;

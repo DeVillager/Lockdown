@@ -56,6 +56,7 @@ public class PC : Item
         UIManager.Instance.SetText($"You worked hard.\n(+{wage}G)");
         Player.Instance.IncreaseMoney(wage);
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Work, UseTime);
+        TaskManager.Instance.TaskDone(TaskAction.Work);
     }
 
     public void Chat()
@@ -75,10 +76,11 @@ public class PC : Item
         }
         if (Player.Instance.Money >= foodOrderPrice)
         {
-            base.Use();
+            //base.Use();
             refrigerator.Fill();
             Player.Instance.Money -= foodOrderPrice;
             UIManager.Instance.SetText($"Ordered some food.\nRefrigerator filled.");
+            TaskManager.Instance.TaskDone(TaskAction.OrderFood);
         }
         else
         {
@@ -99,8 +101,9 @@ public class PC : Item
         base.Use();
         UIManager.Instance.SetText($"You studied hard.\n(EXP +{studyExp})");
         DataManager.Instance.exp += studyExp;
-        Player.Instance.Exp += studyExp;
+        Player.Instance.IncreaseExp(studyExp);
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Exp, studyExp);
+        TaskManager.Instance.TaskDone(TaskAction.Study);
     }
 
     public void ClosePC()
