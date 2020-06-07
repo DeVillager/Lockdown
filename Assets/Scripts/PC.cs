@@ -57,6 +57,11 @@ public class PC : Item
         Player.Instance.IncreaseMoney(wage);
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Work, UseTime);
         TaskManager.Instance.TaskDone(TaskAction.Work);
+        //bool valueType = TaskManager.Instance.IncreaseDailyPoints(ValueType.Work, UseTime);
+        //if (valueType)
+        //{
+        //    TaskManager.Instance.TaskDone(TaskAction.Work);
+        //}
     }
 
     public void Chat()
@@ -92,6 +97,7 @@ public class PC : Item
     {
         UIManager.Instance.SetText($"I turned on PC.");
         homeWindow.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(workButton);
         Player.Instance.controller.enabled = false;
     }
@@ -104,6 +110,10 @@ public class PC : Item
         Player.Instance.IncreaseExp(studyExp);
         TaskManager.Instance.IncreaseDailyPoints(ValueType.Exp, studyExp);
         TaskManager.Instance.TaskDone(TaskAction.Study);
+        //if (!TaskManager.Instance.IncreaseDailyPoints(ValueType.Exp, studyExp))
+        //{
+        //    TaskManager.Instance.TaskDone(TaskAction.Study);
+        //}
     }
 
     public void ClosePC()

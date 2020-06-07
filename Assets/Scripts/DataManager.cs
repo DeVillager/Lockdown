@@ -29,7 +29,7 @@ public class DataManager : Singleton<DataManager>
         string debug = "";
         foreach (Data data in gameData)
         {
-            debug = $"TotalMoney:{data.money}  TasksDone:{data.tasksDone}  TotalExp:{data.exp}";
+            debug = $"TotalMoney:{data.money}  TaskPoints:{data.tasksDone}  TotalExp:{data.exp}";
             Debug.Log(debug);
         }
         return debug;
@@ -37,7 +37,7 @@ public class DataManager : Singleton<DataManager>
 
     public string FinalValues()
     {
-        return $"MoneyEarned:{money}  ExpEarned:{exp}  TasksDone:{tasksDone}  ItemsBought:{itemsBought}";
+        return $"MoneyEarned:{money}  ExpEarned:{exp}  TaskPoints:{tasksDone}  ItemsBought:{itemsBought}";
     }
 
     public void ClearData()

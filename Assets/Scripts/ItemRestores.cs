@@ -25,5 +25,14 @@ public class ItemRestores : MonoBehaviour
         }
     }
 
+    public void ShowShopItemRestorePoints(Item item)
+    {
+        foreach (RestoreText restoreText in restoreTexts)
+        {
+            restoreText.gameObject.SetActive(true);
+            restoreText.SetShopItemText(item);
+        }
+    }
+
     
 }

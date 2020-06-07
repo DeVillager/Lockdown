@@ -14,6 +14,7 @@ public class Task : MonoBehaviour
     public TaskType taskType;
     //public NeedType needType;
     public int requiredAmount;
+    public int rewardPoints;
     //public int expPoints;
     //[HideInInspector]
     public TextMeshProUGUI descriptionText;
@@ -21,6 +22,7 @@ public class Task : MonoBehaviour
     //[HideInInspector]
     public bool completed = false;
     public TaskAction taskAction;
+    
 
     private void Awake()
     {

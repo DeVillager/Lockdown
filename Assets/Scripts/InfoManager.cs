@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.PlayerLoop;
 using UnityEngine.UI;
 
-public class InfoManager : MonoBehaviour
+public class InfoManager : Singleton<InfoManager>
 {
     [SerializeField]
     private TextMeshProUGUI itemName;
@@ -17,12 +17,15 @@ public class InfoManager : MonoBehaviour
     private Image itemImage;
     [SerializeField]
     private TextMeshProUGUI otherInfo;
+    private bool itemShowed = false;
+    [SerializeField]
+    private TextMeshProUGUI needDecrease;
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         itemRestores = GetComponentInChildren<ItemRestores>();
     }
-
 
 
     void Update()
@@ -30,11 +33,16 @@ public class InfoManager : MonoBehaviour
         GameObject collidedObject = Player.Instance.GetCollidingObject();
         if (collidedObject != null && Player.Instance.IsCollidingToItem())
         {
-            ShowItemInfo(collidedObject);
+            if (!itemShowed)
+            {
+                ShowItemInfo(collidedObject);
+                itemShowed = true;
+            }
         }
         else
         {
             HideItemInfo();
+            itemShowed = false;
         }
     }
 
@@ -44,6 +52,7 @@ public class InfoManager : MonoBehaviour
         itemName.text = $"{collidedItem.gameObject.name}";
         useTime.text = $"Use time: {collidedItem.UseTime}h";
         otherInfo.text = collidedItem.otherInfo;
+        needDecrease.text = $"NeedDown:{collidedItem.decreaseChance * 100}%";
         itemRestores.ShowRestorePoints();
         itemImage.enabled = true;
         itemImage.sprite = collidedItem.GetSprite();
@@ -54,9 +63,24 @@ public class InfoManager : MonoBehaviour
         itemName.text = "";
         useTime.text = "";
         otherInfo.text = "";
+        needDecrease.text = "";
         itemRestores.HideRestorePoints();
         itemImage.enabled = false;
     }
 
-    
+    public void ShowShopItem(GameObject shopItemObject)
+    {
+        ShopItem shopItem = shopItemObject.GetComponent<ShopItem>();
+        Item item = shopItem.item.GetComponent<Item>();
+        Debug.Log($"{item.name}");
+        itemName.text = $"{item.gameObject.name}";
+        useTime.text = $"Use time: {item.UseTime}h";
+        otherInfo.text = item.otherInfo;
+        needDecrease.text = $"NeedDown:{item.decreaseChance * 100}%";
+        itemRestores.ShowShopItemRestorePoints(item);
+        itemImage.enabled = true;
+        itemImage.sprite = item.GetSprite();
+    }
+
+
 }

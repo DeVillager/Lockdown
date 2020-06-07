@@ -9,7 +9,7 @@ using Random = UnityEngine.Random;
 public class TaskManager : Singleton<TaskManager>
 {
     public int tasksDone = 0;
-    public int requiredTasksDone = 10;
+    public int requiredTasksDone = 50;
     public ValueAmount[] valueAmounts;
     private Dictionary<ValueType, int> dailyPoints;
 
@@ -46,7 +46,7 @@ public class TaskManager : Singleton<TaskManager>
         {
             dailyPoints[valueAmount.valueType] = valueAmount.amount;
         }
-        lockDownTasksDone.text = $"Lockdown tasks done:\n{tasksDone}/{requiredTasksDone}";
+        lockDownTasksDone.text = $"Lockdown task points(TP):\n{tasksDone}/{requiredTasksDone}";
     }
 
     public void CheckProgress()
@@ -83,21 +83,22 @@ public class TaskManager : Singleton<TaskManager>
         }
     }
 
-    public void IncreaseDailyPoints(ValueType valueType, int amount)
+    public bool IncreaseDailyPoints(ValueType valueType, int amount)
     {
         if (dailyTask.taskType == TaskType.Value)
         {
             dailyPoints[valueType] += amount;
             CheckIfDailyTaskDone();
+            return true;
         }
-        //UpdateDailyTaskText();
+        return false;
     }
 
     public void GetReward()
     {
-        tasksDone++;
+        tasksDone += dailyTask.rewardPoints;
         //Player.Instance.Exp += dailyTask.expPoints;
-        lockDownTasksDone.text = $"Lockdown tasks done:\n{tasksDone}/{requiredTasksDone}";
+        lockDownTasksDone.text = $"Lockdown task points(TP):\n{tasksDone}/{requiredTasksDone}";
         taskDone = true;
     }
 
@@ -105,9 +106,10 @@ public class TaskManager : Singleton<TaskManager>
     {
         foreach (ValueType key in dailyPoints.Keys)
         {
-            if (key == dailyTask.valueType && dailyPoints[key] >= dailyTask.requiredAmount)
+            if (key == dailyTask.valueType && dailyPoints[key] >= dailyTask.requiredAmount && !taskDone)
             {
                 GetReward();
+                return;
             }
         }
     }
@@ -128,15 +130,18 @@ public class TaskManager : Singleton<TaskManager>
         {
             ValueType valueType = dailyTask.valueType;
             int remaining = dailyTaskrequiredAmount - dailyPoints[valueType];
+            dailyTask.descriptionText.text = $"{dailyTask.description}";
             if (remaining > 0)
             {
-                dailyTask.descriptionText.text = $"{dailyTask.description}\n({remaining} more)";
+                dailyTask.descriptionText.text += $"\n({remaining} more)";
             }
+            dailyTask.descriptionText.text += $"\n[+{dailyTask.rewardPoints} TP]";
         }
         else
         {
             // TaskType is Action
             dailyTask.descriptionText.text = $"{dailyTask.description}";
+            dailyTask.descriptionText.text += $"\n[+{dailyTask.rewardPoints} TP]";
         }
     }
 

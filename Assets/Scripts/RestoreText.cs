@@ -28,4 +28,17 @@ public class RestoreText : MonoBehaviour
         }
     }
 
+    public void SetShopItemText(Item item)
+    {
+        Need need = item.GetNeed(needType);
+        if (need != null)
+        {
+            restoreText.text = $"{needType} +{need.Points}";
+        }
+        else
+        {
+            restoreText.gameObject.SetActive(false);
+        }
+    }
+
 }

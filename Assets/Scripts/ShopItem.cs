@@ -5,8 +5,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using Types;
+using UnityEngine.Events;
+using UnityEngine.EventSystems;
 
-public class ShopItem : MonoBehaviour
+public class ShopItem : MonoBehaviour, ISelectHandler
 {
     [SerializeField]
     public string itemName;
@@ -16,8 +18,7 @@ public class ShopItem : MonoBehaviour
     private int price;
     [SerializeField]
     private TextMeshProUGUI priceText;
-    [SerializeField]
-    private GameObject item;
+    public GameObject item;
     [SerializeField]
     private Vector2 location;
     private GameObject nextShopItem;
@@ -94,4 +95,11 @@ public class ShopItem : MonoBehaviour
             unlockedItem.previousVersion = newItem;
         }
     }
+
+    public void OnSelect(BaseEventData eventData)
+    {
+        GameObject selectedObject = eventData.selectedObject;
+        InfoManager.Instance.ShowShopItem(selectedObject);
+    }
+
 }

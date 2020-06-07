@@ -13,6 +13,7 @@ public class TaskScriptEditor : Editor
         Task task = (Task)target;
         task.description = EditorGUILayout.TextField("Description:", task.description);
         task.taskType = (TaskType)EditorGUILayout.EnumPopup("Task Type", task.taskType);
+        task.rewardPoints = EditorGUILayout.IntField("Reward Points:", task.rewardPoints);
 
         if (task.taskType == TaskType.Value)
         {
