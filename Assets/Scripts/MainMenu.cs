@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
@@ -24,4 +25,20 @@ public class MainMenu : MonoBehaviour
         Debug.Log("Quitting...");
         Application.Quit();
     }
+
+    public void PlaySelect()
+    {
+        SoundManager.Instance.PlayClick();
+    }
+
+    public void PlayCancel()
+    {
+        SoundManager.Instance.PlayCancel();
+    }
+
+    public void PlayStartGame()
+    {
+        SoundManager.Instance.PlayRecovery();
+    }
+
 }

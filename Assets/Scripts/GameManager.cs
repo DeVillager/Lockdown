@@ -96,11 +96,12 @@ public class GameManager : Singleton<GameManager>
 
     public void ShowEndScreen(GameObject screen)
     {
-        Player.Instance.controller.enabled = false;
         if (screen.activeInHierarchy)
         {
             return;
         }
+        Player.Instance.controller.enabled = false;
+        SoundManager.Instance.PlayVictory();
         screen.SetActive(true);
         if (gameState == GameState.GameOver)
         {
@@ -169,6 +170,7 @@ public class GameManager : Singleton<GameManager>
         PCMenu.Instance.HideMenus();
         //Player.Instance.NextDay();
         TaskManager.Instance.NewTask();
+        SoundManager.Instance.PlayLockDown();
         //LoadNextDay();
     }
 
@@ -183,6 +185,7 @@ public class GameManager : Singleton<GameManager>
         time = 0;
         hourlyWage = 1;
 
+        SoundManager.Instance.PlayLockDown();
         Debug.Log("Loading main menu");
         SceneManager.LoadScene("MainMenu");
         //LoadNextDay();

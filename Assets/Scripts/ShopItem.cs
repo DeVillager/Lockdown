@@ -6,7 +6,6 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using Types;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
 
 public class ShopItem : MonoBehaviour, ISelectHandler
 {
@@ -60,6 +59,8 @@ public class ShopItem : MonoBehaviour, ISelectHandler
     {
         if (Player.Instance.Money >= price)
         {
+            SoundManager.Instance.PlayRecovery();
+
             Player.Instance.Money -= price;
             CreateItem();
             
@@ -71,6 +72,7 @@ public class ShopItem : MonoBehaviour, ISelectHandler
         }
         else
         {
+            SoundManager.Instance.PlayCancel();
             UIManager.Instance.SetText("Not enough money.");
         }
     }
@@ -98,6 +100,7 @@ public class ShopItem : MonoBehaviour, ISelectHandler
 
     public void OnSelect(BaseEventData eventData)
     {
+        //SoundManager.Instance.PlayClick();
         GameObject selectedObject = eventData.selectedObject;
         InfoManager.Instance.ShowShopItem(selectedObject);
     }

@@ -24,6 +24,7 @@ public class Item : MonoBehaviour
 
     public virtual void Use()
     {
+        //SoundManager.Instance.PlayUse();
         itemUsed = true;
         string restoredMsg = "";
         foreach (Need playerNeed in Player.Instance.needs)

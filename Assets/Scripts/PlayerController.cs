@@ -143,6 +143,7 @@ public class PlayerController : MonoBehaviour
         if (useInput && collidedObject != null && collidingToItem)
         {
             Debug.Log("Item used");
+            SoundManager.Instance.PlayUse();
             collidedObject.GetComponent<Item>().Use();
             //NeedManager.Instance.UpdateNeeds();
         }

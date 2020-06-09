@@ -52,6 +52,7 @@ public class PC : Item
     public void Work()
     {
         base.Use();
+        SoundManager.Instance.PlayWork();
         int wage = GameManager.Instance.hourlyWage;
         UIManager.Instance.SetText($"You worked hard.\n(+{wage}G)");
         Player.Instance.IncreaseMoney(wage);
@@ -74,13 +75,16 @@ public class PC : Item
     //TODO OrderFood
     public void OrderFood()
     {
+        
         if (refrigerator.foodAmount == refrigerator.maxFoodAmount)
         {
+            SoundManager.Instance.PlayCancel();
             UIManager.Instance.SetText($"Refrigerator is full already!");
             return;
         }
         if (Player.Instance.Money >= foodOrderPrice)
         {
+            SoundManager.Instance.PlayRecovery();
             //base.Use();
             refrigerator.Fill();
             Player.Instance.Money -= foodOrderPrice;
@@ -89,12 +93,14 @@ public class PC : Item
         }
         else
         {
+            SoundManager.Instance.PlayCancel();
             UIManager.Instance.SetText($"Not enough money!");
         }
     }
 
     public void OpenPC()
     {
+        SoundManager.Instance.PlayPCOn();
         UIManager.Instance.SetText($"I turned on PC.");
         homeWindow.SetActive(true);
         EventSystem.current.SetSelectedGameObject(null);
@@ -105,6 +111,7 @@ public class PC : Item
     public void Study()
     {
         base.Use();
+        SoundManager.Instance.PlayWork();
         UIManager.Instance.SetText($"You studied hard.\n(EXP +{studyExp})");
         DataManager.Instance.exp += studyExp;
         Player.Instance.IncreaseExp(studyExp);
@@ -118,6 +125,7 @@ public class PC : Item
 
     public void ClosePC()
     {
+        SoundManager.Instance.PlayCancel();
         UIManager.Instance.SetText($"Shutting down PC...");
         EventSystem.current.SetSelectedGameObject(null);
         homeWindow.SetActive(false);
@@ -126,6 +134,7 @@ public class PC : Item
 
     public void OpenShop()
     {
+        SoundManager.Instance.PlayClick();
         UIManager.Instance.SetText($"Browsing the online shop.");
         homeWindow.SetActive(false);
         shopWindow.SetActive(true);
@@ -134,6 +143,7 @@ public class PC : Item
 
     public void CloseShop()
     {
+        SoundManager.Instance.PlayClick();
         UIManager.Instance.SetText($"Returning to home screen.");
         shopWindow.SetActive(false);
         homeWindow.SetActive(true);
