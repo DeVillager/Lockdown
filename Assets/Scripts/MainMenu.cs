@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+
     private void Start()
     {
         if (GameManager.Instance != null)
         {
             Destroy(GameManager.Instance.gameObject);
-        }    
+        }
+        //DisableMouse();
     }
 
     public void StartGame()
@@ -41,4 +43,9 @@ public class MainMenu : MonoBehaviour
         SoundManager.Instance.PlayRecovery();
     }
 
+    public void DisableMouse()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
 }

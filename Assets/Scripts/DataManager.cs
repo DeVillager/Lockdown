@@ -37,7 +37,7 @@ public class DataManager : Singleton<DataManager>
 
     public string FinalValues()
     {
-        return $"MoneyEarned:{money}  ExpEarned:{exp}  TaskPoints:{tasksDone}  ItemsBought:{itemsBought}";
+        return $"MoneyEarned:{money}  ExpEarned:{exp}  TaskPoints:{tasksDone}  ItemsBought:{itemsBought} DaysLived:{GameManager.Instance.GetDaysLived()}";
     }
 
     public void ClearData()

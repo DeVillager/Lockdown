@@ -11,7 +11,7 @@ public class GameManager : Singleton<GameManager>
 {
     public int hourlyWage = 1;
     [SerializeField]
-    private int daysToDeadLine = 20;
+    private int daysToDeadLine = 10;
     [SerializeField]
     private int time = 0;
     [SerializeField]
@@ -194,5 +194,10 @@ public class GameManager : Singleton<GameManager>
     public void SetGameOverMessage(string msg)
     {
         gameOverScreen.GetComponentInChildren<TextMeshProUGUI>().text = $"{msg}\n\nGAME OVER";
+    }
+
+    public int GetDaysLived()
+    {
+        return 10 - daysToDeadLine;
     }
 }
